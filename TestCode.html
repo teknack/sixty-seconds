@@ -27,84 +27,117 @@
         var WIDTH = contX2 - contX1;
         var HEIGHT = contY2 - contY1;
         var FLAG = 0;
-
         function keyInput(evt) {
           switch (evt.keyCode) {
-            case 38:
-              /* Up arrow was pressed */
-              if (y - dy > contY1 + 6) {
-                y -= dy;
-              }
-              break;
-            case 40:
-              /* Down arrow was pressed */
-              if (y + dy <= HEIGHT) {
-                y += dy;
-              }
-              break;
+            case 38:  							/* Up arrow was pressed */
+{    FLAG=0;                                    //Reset FLAG
+if(40<x && x<183)
+{
+ if (y - 10<178 && y>=178)
+{  y=183; 
+FLAG=1;     }
+ if (y - 10<208 && y>=208)
+{  y=213;  
+FLAG=1;    }
+}
+if(213<x && x<365)
+{
+ if (y - 10<178 && y>=178)
+{  y=183; 
+FLAG=1;     }
+ if (y - 10<208 && y>=208)
+{  y=213;  
+FLAG=1;    }
+}
 
+if (FLAG==0 && y - dy > contY1+6){
+y -= dy;
+}}
+break;
+
+            case 40: 							/* Down arrow was pressed */
+{
+	 FLAG=0;                                    //Reset FLAG
+if(40<x && x<183)
+{ if(y+10 > 178 && y<= 178)
+  {y=173; 
+  FLAG=1;} 
+  if (y + 10 > 208 && y<=208)
+{  y=203;  
+FLAG=1;    }
+}
+if(213<x && x<=365)
+{
+ if (y + 10 >178 && y<=178)
+{  y =173 ; 
+FLAG=1;     }
+ if (y +10>208 && y<=208)
+{  y=203;  
+FLAG=1;    }
+}
+if (FLAG==0 && y + dy <= contY2){
+y += dy;
+}
+}
+break;
             case 37:
               /* Left arrow was pressed */
-
               {
                 FLAG = 0; //Reset FLAG
-                if (40 < y && y < 178) { //alert (y);
+                if (40 < y && y < 178) {  
                   if (x - 10 < 183 && x >= 183) {
                     x = 188;
                     FLAG = 1;
-                    //alert("flag 1");
+                     
                   }
                   if (x - 10 < 213 && x >= 213) {
                     x = 218;
                     FLAG = 1;
-                    //alert("flag 1");
+                     
                   }
                 }
-                if (208 < y && y < 365) { //alert (y);
+                if (208 < y && y < 365) {  
                   if (x - 10 < 213 && x >= 213) {
                     x = 218;
                     FLAG = 1;
-                    alert("flag 1");
+                     
                   }
                   if (x - 10 < 183 && x >= 183) {
                     x = 188;
                     FLAG = 1;
-                    alert("flag 1");
+                     
                   }
                 }
                 if (FLAG == 0 && x - dx > contX1 + 6) {
                   x -= dx;
                 }
               }
-
-
               break;
-
             case 39:
               /* Right arrow was pressed */ {
                 FLAG = 0; //Reset FLAG
-                if (40 < y && y < 178) { //alert (y);
+                if (40 < y && y < 178) {  
                   if (x + 10 > 183 && x <= 183) {
                     x = 178;
                     FLAG = 1;
-                    //alert("flag 1");
+                     
                   }
                   if (x + 10 > 213 && x <= 213) {
                     x = 208;
                     FLAG = 1;
-                    //alert("flag 1");
+                     
                   }
                 }
-                if (208 < y && y < 365) { //alert (y);
+                if (208 < y && y < 365) {  
                   if (x + 10 > 213 && x <= 213) {
                     x = 208;
                     FLAG = 1;
-                    alert("flag 1");
+                     
                   }
                   if (x + 10 > 183 && x <= 183) {
                     x = 178;
                     FLAG = 1;
-                    alert("flag 1");
+                     
                   }
                 }
                 if (FLAG == 0 && x + dx <= WIDTH) {
@@ -114,58 +147,46 @@
               break;
           }
         }
-
-
         function init() {
           var ctx = document.getElementById('canvas').getContext('2d');
-
           function player(x, y, r) {
             ctx.clearRect(10, 10, 400, 400)
             ctx.beginPath();
             ctx.arc(x, y, r, 0, Math.PI * 2, true);
             ctx.fill();
-
           }
-
           function draw() {
             player(x, y, 5);
             ctx.lineWidth = "6";
             ctx.strokeRect(contX1, contY1, WIDTH, HEIGHT);
             ctx.stroke();
-
-
             ctx.lineWidth = "3";
             ctx.beginPath();
             ctx.moveTo(183, 40);
             ctx.lineTo(183, 178);
             ctx.lineTo(40, 178);
             ctx.stroke();
-
             ctx.beginPath();
             ctx.moveTo(213, 40);
             ctx.lineTo(213, 178);
             ctx.lineTo(365, 178);
             ctx.stroke();
-
             ctx.beginPath();
             ctx.moveTo(40, 208);
             ctx.lineTo(183, 208);
             ctx.lineTo(183, 365);
             ctx.stroke();
-
             ctx.beginPath();
             ctx.moveTo(213, 365);
             ctx.lineTo(213, 208);
             ctx.lineTo(365, 208);
             ctx.stroke();
-
             requestAnimationFrame(draw);
           }
           draw();
         }
         window.onload = init();
         window.addEventListener('keydown', keyInput, true);
-
       </script>
   </body>
 
