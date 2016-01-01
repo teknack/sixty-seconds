@@ -9,6 +9,7 @@
 
 
   <body>
+  Collect resources one at a time and move to the bottom right
     <section>
 
 
@@ -20,10 +21,11 @@
 
 
       <script type="text/javascript">
-        var dx = 3;
-        var dy = 3;
-        var x = 150;
-        var y = 150;
+	    var ctx = document.getElementById('canvas').getContext('2d');
+        var dx = 6;
+        var dy = 6;
+        var x = 300;
+        var y = 300;
         var contX1 = 10;
         var contX2 = 405;
         var contY1 = 10;
@@ -33,23 +35,33 @@
         var FLAG = 0;
         var collided=false;
         var resources =new Array();
+		var vault =new Array();
         var resource_count = 0;
         var oxy =new Image();
         oxy.src ="oxygen.jpg";
         var water=new Image();
         water.src ="water.jpg";
+		var l=480;
         for(var i=0;i<6;i++)
         {resources[i]= oxy ;
+		resources[i].id='oxy';
           i++;
          resources[i] = water;
+		 resources[i].id='water';
         }
-        var rx =new Array(); //array of x coordiantes of resources
-        rx.push(260);rx.push(220);rx.push(20);rx.push(90);
+        var rx =new Array();    //array of x coordinates of resources
+        rx.push(260);rx.push(220);rx.push(20);rx.push(90);rx.push(140);rx.push(280);
         var ry =new Array();
-        ry.push(100);ry.push(240);ry.push(280);ry.push(340);
-
-resource_count=resources.length;
-
+        ry.push(100);ry.push(240);ry.push(280);ry.push(360);ry.push(140);ry.push(240);
+		var have =new Array();    
+        resource_count=resources.length;
+function inVault() {     
+if (x>380 && x<630)
+{
+if(y>380 && y<400)
+{return 1;}}
+else return 0;
+}
 
 function keyInput(evt) {
 
@@ -65,7 +77,7 @@ bBoxRight=rx[i]+25;
 bBoxTop=ry[i]-5;
 bBoxBottom=ry[i]+28;
 
-intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom, 
+intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
                            bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom);
 if(collided)
 {
@@ -74,22 +86,25 @@ if(collided)
 }
 }
 function remove(i){
-
-   resources.splice(i,1);
-                    rx.splice(i,1);
-                    ry.splice(i,1);
-                    resource_count --;
+     if (have.length==1)               //Constraint (Objective #5)
+	  return 0;
+	  have.push(resources[i].id);   
+	  resources.splice(i,1);
+            rx.splice(i,1);
+            ry.splice(i,1);
+            resource_count --;
 
 }
 
-function intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom, 
+
+function intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
                            bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom) {
 
    if( bBoxRight >= aBoxLeft && bBoxBottom >= aBoxTop && aBoxRight >= bBoxLeft && aBoxBottom >= bBoxTop)
             collided = true;
 }
        switch (evt.keyCode) {
-      case 38:  /* Up arrow was pressed */
+      case 38:  /* Up arrow */
 {    FLAG=0;                                    //Reset FLAG
 if(40<x && x<183)
 {
@@ -97,7 +112,7 @@ if (y - 10<178 && y>=178)
 {  y=183;
 FLAG=1;     }
 if (y - 10<208 && y>=208)
-{  y=213; 
+{  y=213;
 FLAG=1;    }
 }
 if(213<x && x<365)
@@ -106,7 +121,7 @@ if (y - 10<178 && y>=178)
 {  y=183;
 FLAG=1;     }
 if (y - 10<208 && y>=208)
-{  y=213; 
+{  y=213;
 FLAG=1;    }
 }
 
@@ -115,7 +130,7 @@ y -= dy;
 }}
 break;
 
-            case 40: /* Down arrow was pressed */
+            case 40: /* Down arrow  */
 {
 FLAG=0;                                    //Reset FLAG
 if(40<x && x<183)
@@ -123,7 +138,7 @@ if(40<x && x<183)
   {y=173;
   FLAG=1;}
   if (y + 10 > 208 && y<=208)
-{  y=203; 
+{  y=203;
 FLAG=1;    }
 }
 if(213<x && x<=365)
@@ -132,7 +147,7 @@ if (y + 10 >178 && y<=178)
 {  y =173 ;
 FLAG=1;     }
 if (y +10>208 && y<=208)
-{  y=203; 
+{  y=203;
 FLAG=1;    }
 }
 if (FLAG==0 && y + dy <= contY2){
@@ -141,31 +156,31 @@ y += dy;
 }
 break;
             case 37:
-              /* Left arrow was pressed */
+              /* Left arrow */
               {
                 FLAG = 0; //Reset FLAG
-                if (40 < y && y < 178) { 
+                if (40 < y && y < 178) {
                   if (x - 10 < 183 && x >= 183) {
                     x = 188;
                     FLAG = 1;
-                    
+                   
                   }
                   if (x - 10 < 213 && x >= 213) {
                     x = 218;
                     FLAG = 1;
-                    
+                   
                   }
                 }
-                if (208 < y && y < 365) { 
+                if (208 < y && y < 365) {
                   if (x - 10 < 213 && x >= 213) {
                     x = 218;
                     FLAG = 1;
-                    
+                   
                   }
                   if (x - 10 < 183 && x >= 183) {
                     x = 188;
                     FLAG = 1;
-                    
+                   
                   }
                 }
                 if (FLAG == 0 && x - dx > contX1 + 6) {
@@ -176,28 +191,28 @@ break;
             case 39:
               /* Right arrow was pressed */ {
                 FLAG = 0; //Reset FLAG
-                if (40 < y && y < 178) { 
+                if (40 < y && y < 178) {
                   if (x + 10 > 183 && x <= 183) {
                     x = 178;
                     FLAG = 1;
-                    
+                   
                   }
                   if (x + 10 > 213 && x <= 213) {
                     x = 208;
                     FLAG = 1;
-                    
+                   
                   }
                 }
-                if (208 < y && y < 365) { 
+                if (208 < y && y < 365) {
                   if (x + 10 > 213 && x <= 213) {
                     x = 208;
                     FLAG = 1;
-                    
+                   
                   }
                   if (x + 10 > 183 && x <= 183) {
                     x = 178;
                     FLAG = 1;
-                    
+                   
                   }
                 }
                 if (FLAG == 0 && x + dx <= WIDTH) {
@@ -206,13 +221,10 @@ break;
               }
               break;
           }// switch closes here
-                
+               
         }//function keyinput ends here
-
-
-        function init() {
-          var ctx = document.getElementById('canvas').getContext('2d');
-          function player(x, y, r) {
+  function init() {
+     function player(x, y, r) {
             ctx.clearRect(10, 10, 400, 400)
             ctx.beginPath();
             ctx.arc(x, y, r, 0, Math.PI * 2, true);
@@ -220,6 +232,16 @@ break;
           }
           function draw() {
             player(x, y, 5);
+			if (inVault() && have.length>=1)   //Player vault me hai and he has a resource
+			{ if (have[0]=='water')
+			{ctx.drawImage(water,l,350,30,30);  
+			l+=30;
+			have.splice(water,1);}         //Remove from have array
+			  if (have[0]=='oxy')
+			{ctx.drawImage(oxy,l,350,30,30);
+			l+=30;
+			have.splice(oxy,1);}
+			}
             ctx.lineWidth = "6";
             ctx.strokeRect(contX1, contY1, WIDTH, HEIGHT);
             ctx.stroke();
@@ -244,7 +266,7 @@ break;
             ctx.lineTo(213, 208);
             ctx.lineTo(365, 208);
             ctx.stroke();
-            /*ctx.beginPath();
+            ctx.beginPath();
             ctx.moveTo(10, 193);
             ctx.lineTo(190, 193);
             ctx.stroke();
@@ -252,19 +274,29 @@ break;
             ctx.moveTo(207, 193);
             ctx.lineTo(405, 193);
             ctx.stroke();
-            */
+			 
+            ctx.moveTo(480, 320);    //Drawing the vault
+            ctx.lineTo(480, 400);
+			ctx.lineTo(630, 400);
+			ctx.lineTo(630, 320);
+			ctx.closePath();
+			ctx.stroke();
+           
             for (var i =0 ;i< resource_count;i++)
             ctx.drawImage(resources[i],rx[i],ry[i],30,30);
-            
-          
+           
+		    
+         
             requestAnimationFrame(draw);
           }
-          setInterval(draw(),33);
-        }
+          setInterval(draw(),33);  //I have no idea why this is 33
+       
+		
+	 }	  
         window.onload = init();
         window.addEventListener('keydown', keyInput, true);
 
-        //objective 3 starts here
+        
       </script>
   </body>
 
