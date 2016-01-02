@@ -1,58 +1,21 @@
-<!doctype html>
-<html>
-
- 
- 
-<!doctype html>
+ <!doctype html>
 <html>
 
 
   <head>
-    <meta charset="UTF-8" />
-    <title>Sixty Seconds</title>
+  <meta charset="UTF-8" />
+  <title>Sixty Seconds</title>
   </head>
-
-
   <body>
-  Collect resources one at a time and move to the bottom right
-    <section>
-
-
-      <div>
+   <div>
         <canvas id="canvas" width="1200" height=" 600">
           This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-      </div>
+   </div>
 
-
-      <script type="text/javascript">
-       function handleEvent(e){
- var evt = e ? e:window.event;
- var clickX=0, clickY=0;
-
- if ((evt.clientX || evt.clientY) &&
-     document.body &&
-     document.body.scrollLeft!=null) {
-  clickX = evt.clientX + document.body.scrollLeft;
-  clickY = evt.clientY + document.body.scrollTop;
- }
-
- if (evt.pageX || evt.pageY) {
-  clickX = evt.pageX;
-  clickY = evt.pageY;
- }
-
- alert (evt.type.toUpperCase() + ' mouse event:'
-  +'\n pageX = ' + clickX
-  +'\n pageY = ' + clickY
-  +'\n clientX = ' + evt.clientX
-  +'\n clientY = '  + evt.clientY
-  +'\n screenX = ' + evt.screenX
-  +'\n screenY = ' + evt.screenY
- )
- return false;
-}
-       var ctx = document.getElementById('canvas').getContext('2d');
+	<script type="text/javascript">
+       
+        var ctx = document.getElementById('canvas').getContext('2d');
         var dx = 6;
         var dy = 6;
         var x = 300;
@@ -86,135 +49,128 @@
         rx.push(260);rx.push(220);rx.push(20);rx.push(90);rx.push(140);rx.push(280);
         var ry =new Array();
         ry.push(100);ry.push(240);ry.push(280);ry.push(360);ry.push(140);ry.push(240);
-        var have =new Array();    //Created this
+        var have =new Array();    
         resource_count=resources.length;
-function inVault() {   //Check if player is in vault
-if (x>420 && x<495)
-{
-if(y>350 && y<375)
-{return 1;}}
-else return 0;
-}
 
-function keyInput(evt) {
+		function inVault() {   
+ if (x>420 && x<495)
+ {
+ if(y>350 && y<375)
+ {return 1;}}
+ else return 0;
+ }
 
-for(var i=0;i<rx.length;i++)
-{
-aBoxLeft=x-8;
-aBoxRight=x+8;
-aBoxTop=y-8;
-aBoxBottom=y+5;
-
-bBoxLeft=rx[i]-15;
-bBoxRight=rx[i]+25;
-bBoxTop=ry[i]-5;
-bBoxBottom=ry[i]+28;
-
-intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
+		function keyInput(evt) {
+ for(var i=0;i<rx.length;i++)
+ {
+ aBoxLeft=x-8;
+ aBoxRight=x+8;
+ aBoxTop=y-8;
+ aBoxBottom=y+5;
+ bBoxLeft=rx[i]-15;
+ bBoxRight=rx[i]+25;
+ bBoxTop=ry[i]-5;
+ bBoxBottom=ry[i]+28;
+ intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
                            bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom);
-if(collided)
-{
+ if(collided)
+ {
    remove(i);
    collided=false;
-}
-}
-function remove(i){
-     if (have.length==1)   //Player already has resource so dont collect one more
+ }
+ }
+
+		function remove(i){
+     if (have.length==1)   
       return 0;
-      have.push(resources[i].id);  //Otherwise do normally
+      have.push(resources[i].id);  
       resources.splice(i,1);
             rx.splice(i,1);
             ry.splice(i,1);
             resource_count --;
-
-}
-
-
-function intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
+ }
+		function intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
                            bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom) {
-
    if( bBoxRight >= aBoxLeft && bBoxBottom >= aBoxTop && aBoxRight >= bBoxLeft && aBoxBottom >= bBoxTop)
             collided = true;
-}
+ }
        switch (evt.keyCode) {
-      case 38:  /* Up arrow was pressed */
-{    FLAG=0;                                    //Reset FLAG
-if(40<x && x<183 || x > 405 && x < 480 )
-{
-if (y - 10<178 && y>=178 )
-{  y=183;
-FLAG=1;     }
-if (y - 10<208 && y>=208)
-{  y=213;
-FLAG=1;    }
-if(y-10 < 350 && y >=350)
-{ y=355;
-FLAG=1;}
-}
-if( x > 480 && x < 500 )
-{
-if(y-10 < 320 && y >= 320){
+      case 38:  /* Up */
+ {    FLAG=0;                                     
+ if(40<x && x<183 || x > 405 && x < 480 )
+ {
+ if (y - 10<178 && y>=178 )
+ {  y=183;
+ FLAG=1;     }
+ if (y - 10<208 && y>=208)
+ {  y=213;
+ FLAG=1;    }
+ } 
+ if( x > 480 && x < 500 )
+ {
+ if(y-10 < 320 && y >= 320){
   y=325;
   FLAG=1;
-}
-}
-
-if(213<x && x<365)
-{
-if (y - 10<178 && y>=178)
-{  y=183;
-FLAG=1;     }
-if (y - 10<208 && y>=208)
-{  y=213;
-FLAG=1;    }
-}
-
-if (FLAG==0 && y - dy > contY1+6){
-y -= dy;
-}}
-break;
-
-            case 40: /* Down arrow was pressed */
-{
-FLAG=0;                                    //Reset FLAG
-if(40<x && x<183|| x > 405 && x < 480 )
-{ if(y+10 > 178 && y<= 178)
+ }
+ }
+ if(213<x && x<365)
+ {
+ if (y - 10<178 && y>=178)
+ {  y=183;
+ FLAG=1;     
+ }
+ if (y - 10<208 && y>=208)
+ {  y=213;
+ FLAG=1;    
+ }
+ }
+ if (FLAG==0 && y - dy > contY1+6){
+ y -= dy;
+ }}
+ break;
+            case 40: /* Down */
+ {
+ FLAG=0;                                     
+ if(40<x && x<183|| x > 405 && x < 480 )
+ { 
+ if(y+10 > 178 && y<= 178)
   {y=173;
   FLAG=1;}
+  
   if (y + 10 > 208 && y<=208)
-{  y=203;
-FLAG=1;    }
+ {  y=203;
+ FLAG=1;    }
 
-if(y+10 > 375 && y <=375){
+ if(y+10 > 375 && y <=375){
   y=370;
   FLAG=1;
-}
-}
-if( x > 480 && x < 500 )
-{
-if(y+10> 400 && y <= 400){
+ }
+ }
+ if( x > 480 && x < 500 )
+ {
+ if(y+10> 400 && y <= 400){
   y=395;
   FLAG=1;
-}
-}
-if(213<x && x<=365)
-{
-if (y + 10 >178 && y<=178)
-{  y =173 ;
-FLAG=1;     }
-if (y +10>208 && y<=208)
-{  y=203;
-FLAG=1;    }
-}
-if (FLAG==0 && y + 10 <= contY2){
-y += dy;
-}
-}
-break;
+ }
+ }
+ if(213<x && x<=365)
+ {
+ if (y + 10 >178 && y<=178)
+ {  y =173 ;
+ FLAG=1;     }
+ if (y +10>208 && y<=208)
+ {  y=203;
+ FLAG=1;    }
+ }
+ if (FLAG==0 && y + 10 <= contY2){
+ y += dy;
+ }
+ }
+ break;
             case 37:
-              /* Left arrow was pressed */
+              /* Left */
               {
-                FLAG = 0; //Reset FLAG
+                FLAG = 0; 
                 if (40 < y && y < 178 || y > 320 && y < 350  ) {
                   if (x - 10 < 183 && x >= 183) {
                     x = 188;
@@ -248,39 +204,34 @@ break;
                 }
               }
               break;
-            case 39:
-              /* Right arrow was pressed */ {
-                FLAG = 0; //Reset FLAG
+            case 39:      //Right
+			  {
+                FLAG = 0;                      
                 if (40 < y && y < 178) {
                   if (x + 10 > 183 && x <= 183) {
                     x = 178;
                     FLAG = 1;
-                  
                   }
                   if (x + 10 > 213 && x <= 213) {
                     x = 208;
                     FLAG = 1;
-                  
                   }
                 }
-
                 if (208 < y && y < 365) {
                   if (x + 10 > 213 && x <= 213) {
                     x = 208;
                     FLAG = 1;
-                  
                   }
                   if (x + 10 > 183 && x <= 183) {
                     x = 178;
                     FLAG = 1;
-                  
                   }
                 }
                 if (FLAG == 0 && x + 1 <= WIDTH) {
                   x += dx;
                 }
               }
-             if(y<=375 && y>350 && x+5 <= 475)//for entering into vault
+             if(y<=375 && y>350 && x+5 <= 475 && x>380) //To Vault
                 { x +=dx; FLAG = 0 ;}
               else if (x+5 >= 480)
                 FLAG =1;
@@ -289,28 +240,25 @@ break;
           }// switch closes here
               
         }//function keyinput ends here
-
-
         function init() {
           draw();
           
           function player(x, y,r ) {
-         
-            
             ctx.clearRect(10, 10, 480, 400);
-            //ctx.clearRect(405,350,75, 25);  
             ctx.beginPath();
             ctx.arc(x, y, r, 0, Math.PI * 2, true);
             ctx.fill();
             }
           function draw() {
-             player (x,y,5);
-            if (inVault() && have.length>=1)   //Player vault me hai and he has a resource
+            
+			player (x,y,5);
+            
+			if (inVault() && have.length>=1)   
             {
             if (have[0]=='water')
             {ctx.drawImage(water,l,350,15,15);
             l+=20;
-            have.splice(water,1);}         //Remove from have array
+            have.splice(water,1);}         
               if (have[0]=='oxy')
             {ctx.drawImage(oxy,l,350,15,15);
             l+=20;
@@ -359,21 +307,10 @@ break;
             ctx.lineTo(365, 208);
             ctx.stroke();
             
+            ctx.lineWidth = "6";
+            ctx.fillStyle='red';
             ctx.beginPath();
-            ctx.moveTo(10, 193);
-            ctx.lineTo(190, 193);
-            //ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(207, 193);
-            ctx.lineTo(405, 193);
-            //ctx.stroke();
-              
-            
-            
-           ctx.lineWidth = "6";
-           ctx.fillStyle='red';
-            ctx.beginPath();
-            ctx.moveTo(480,350);    //Drawing the vault
+            ctx.moveTo(480,350);    
             ctx.lineTo(480,320);
             ctx.lineTo(630, 320);
             ctx.lineTo(630, 400);
@@ -384,15 +321,9 @@ break;
           
             for (var i =0 ;i< resource_count;i++)
             ctx.drawImage(resources[i],rx[i],ry[i],30,30);
-           
-    
-        
             requestAnimationFrame(draw);
           }
           draw();
-          //setInterval(draw(),24);
-      
-       
      }     
         window.onload = init();
         window.addEventListener('keydown', keyInput, true);
@@ -401,5 +332,3 @@ break;
   </body>
 
 </html>
-  
-
