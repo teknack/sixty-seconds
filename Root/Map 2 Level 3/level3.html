@@ -54,8 +54,8 @@ var collect=document.getElementById("collect");  //Resource
 var buster = new Sprite("assets/img/Buster0.png");
 var flag = 0;
 var ctx = document.getElementById('canvas').getContext('2d');
-var dx = 6;
-var dy = 6;
+var dx = 12;
+var dy = 12;
 var xq= 60;
 var vault =new Array();
 var c = 0;        //for timer
@@ -74,9 +74,9 @@ var aBoxBottom;
 var aBoxTop;
 var c;
 var keyFunction=true;
-var bw=12;                    //Half of buster's height and width
-var p= new Array();//ajax parameters
-var bh=12;
+                   //Half of buster's height and width
+//ajax parameters
+
 var have =new Array();
 var count;  var l=490; var ini =0;    var collided=0;    var busterini=0;
 var objects = new Array();
@@ -99,8 +99,8 @@ for(var i=0;i<5;i++)
          resources[i].id='wat';
         }
         for(var i=5;i<9;i++)
-        {resources[i]= feu ;
-         resources[i].id='feu';
+        {resources[i]= fue ;
+         resources[i].id='fue';
         }
         for(var i=9;i<13;i++)
         {resources[i]= foo ;
@@ -112,19 +112,19 @@ for(var i=0;i<5;i++)
 
 rx.push(800);ry.push(93); //water
 rx.push(669);ry.push(562);
-rx.push(1001);ry.push(328);
-rx.push(486);ry.push(137);
-rx.push(353);ry.push(669);
+rx.push(1001);ry.push(300);
+rx.push(466);ry.push(117);
+rx.push(353);ry.push(649);
 
 rx.push(1144);ry.push(164); //feul
 rx.push(761);ry.push(380);
-rx.push(993);ry.push(522);
-rx.push(758);ry.push(659);
+rx.push(993);ry.push(502);
+rx.push(758);ry.push(649);
 
-rx.push(476);ry.push(384); //food
-rx.push(944);ry.push(601);
+rx.push(476);ry.push(334); //food
+rx.push(924);ry.push(581);
 rx.push(134);ry.push(654);
-rx.push(543);ry.push(137);
+rx.push(543);ry.push(120);
 
 rx.push(493);ry.push(436); //oxygen
 
@@ -212,74 +212,92 @@ switch(evt.keyCode)
 
 case 38:{         flag=0;
                         if(x>12 && x<612 )
-                        if  (y-bh<10 && y>10)
-                        {y=bh+10; flag=1;
+                        if  (y-dy<19 && y+6>=19)
+                        {y=dy+19; flag=1;
 
                          }                            //Upper wall tick
                      
                         if(x>250 && x<400)
                         {
-                        if (y-bh<140 && y>140)
-                        {y=bh+140; flag=1; }                            //White bedroom wall 1 tick
+                        if (y-dy<162 && y+6>=162)
+                        {y=dy+162; flag=1; }                            //White bedroom wall 1 tick
                         }
                      
-                        if(x>450 && x<612)
+                        if(x>455 && x<612)
                         {
-                        if (y-bh<140 && y>140)
-                        {y=bh+140; flag=1; }                            //White bedroom wall 2 tick
+                        if (y-dy<162 && y+6>=162)
+                        {y=dy+162; flag=1; }                            //White bedroom wall 2 tick
                         }
                      
                         if(x>261 && x<374)
                         {
-                        if (y-bh<95 && y>95)
-                        {y=bh+95; flag=1; }                            //White bed
+                        if (y-dy<112 && y+6>=112)
+                        {y=dy+112; flag=1; }                            //White bed
                         }
                      
                         if(x>521 && x<612)
                         {
-                        if (y-bh<83 && y>83)
-                        {y=bh+83; flag=1; }                                //Section 1 PC Table
+                        if (y-dy<83 && y+6>=83)
+                        {y=dy+83; flag=1; }                                //Section 1 PC Table
                         }
                        
 
                          //sect 3 ka part since we have only two sections now
                       if(x>12  && x<113)
-                        {if(y-bh <409 && y >409)
-                       {  y=409+bh;
+                        {if(y-dy <409 && y+6>=409)
+                       {  y=409+dy;
                         flag=1;     }
                         }
                      
-                        if(x>145  && x<309)
+                        if(x>142  && x<309)
                         {
-                        if (y -bh < 409 && y>=409 )
-                        {  y=409+bh;
+                        if (y -dy < 409 && y+6>=409 )
+                        {  y=409+dy;
                         flag=1;     }
                         }
                      
-                        if(x>382  && x<472)
+                        if(x>370  && x<472)
                         {
-                        if (y -bh <541 && y>=541 )
-                        {  y=541+bh;
+                        if (y -dy <545 && y+6>=545 )
+                        {  y=545+dy;
                         flag=1;     }
                         }
-                     
+                     if(x>355  && x<390)
+                        {
+                        if (y -dy <408 && y+6>=408 )             //tick all of the above
+                        {  y=408+dy;
+                        flag=1;     }
+                        }
                         if(x>464  && x<636)
                         {
-                        if (y -bh <408 && y>=408 )             //tick all of the above
-                        {  y=408+bh;
+                        if (y -dy <408 && y+6>=408 )             //tick all of the above
+                        {  y=408+dy;
                         flag=1;     }
                         }
-                       if(x>575 && x<612)
+                       if(x>468 && x<529)
                        {
-                        if(y-bh <347 && y>=347)
+                        if(y-dy <350 && y+6>=350)
                         {
-                          y=347+bh;flag=1;
+                          y=350+dy;flag=1;
                         }
                        }
-                        if(x>22 && x<239)
+                       if(x>532 && x<556)
+                       {
+                        if(y-dy <365 && y+6>=365)
                         {
-                        if (y -bh <624 && y>=624)
-                        {  y=624+bh;
+                          y=365+dy;flag=1;
+                        }
+                       }
+                        if(x>16 && x<103)
+                        {
+                        if (y -dy <624 && y+6>=624)
+                        {  y=624+dy;
+                        flag=1;     }
+                        }
+                        if(x>89 && x<239)
+                        {
+                        if (y -dy <617 && y+6>=617)
+                        {  y=617+dy;
                         flag=1;     }
                         }
                         if (flag==1)
@@ -293,73 +311,73 @@ case 38:{         flag=0;
 case 40:{               flag=0;                                 
                         if(x>176 && x<243)
                         {
-                        if (y+bh>122 && y<=122)
-                        {y=122-bh; flag=1; }                                //Section 1 Room 1
+                        if (y+dy>122 && y-6<=122)
+                        {y=122-dy; flag=1; }                                //Section 1 Room 1
                         }
                      
                         if(x>250 && x<407)
                         {
-                        if (y+bh>128 && y<128)
-                        {y=128-bh; flag=1; }                                //Section 1 White Bed
+                        if (y+dy>128 && y-6<=128)
+                        {y=128-dy; flag=1; }                                //Section 1 White Bed
                         }
                      
                         if(x>462 && x<614)
                         {
-                        if (y+bh>128 && y<128)
-                        {y=128-bh; flag=1; }                                //Section 1 White bed part 2 and PC room
+                        if (y+dy>128 && y-6<=128)
+                        {y=128-dy; flag=1; }                                //Section 1 White bed part 2 and PC room
                         }
                      
                         if(x>525 && x<650)
                         {
-                        if (y+bh>145 && y<145)
-                        {y=145-bh; flag=1; }                                //Section 1 Dining table
+                        if (y+dy>145 && y-6<=145)
+                        {y=145-dy; flag=1; }                                //Section 1 Dining table
                         }
                      
                         if(x>576 && x<630)
                         {
-                        if (y+bh>290 && y<290)
-                        {y=290-bh; flag=1; }                                //Section 1 Dining table Part 1
+                        if (y+dy>290 && y-6<=290)
+                        {y=290-dy; flag=1; }                                //Section 1 Dining table Part 1
                         }
                           //section ka part same reason
                           if(x>12 && x<113)
-                        { if(y+bh> 377 && y <= 377)
-                          {y=377-bh;
+                        { if(y+dy> 374 && y-6<= 374)
+                          {y=374-dy;
                           flag=1;}
                         }
                      
                         if(x>154 && x<195)
-                        { if(y+bh> 377 && y <= 377)
-                          {y=377-bh;
+                        { if(y+dy> 377 && y-6 <= 377)
+                          {y=377-dy;
                           flag=1;}
                         }
                      
                         if(x>250 && x<310)
-                        { if(y+bh> 377 && y <= 377)
-                          {y=377-bh;
+                        { if(y+dy> 377 && y-6 <= 377)
+                          {y=377-dy;
                           flag=1;}
                         }
                      
                         if(x>364 && x<639)
-                        { if(y+bh> 377 && y <= 377)
-                          {y=377-bh;
+                        { if(y+dy> 377 && y-6 <= 377)
+                          {y=377-dy;
                           flag=1;}
                         }
                      
                         if(x>21 && x<241)
-                        { if(y+bh>475 && y <= 475)
-                          {y=475-bh;
+                        { if(y+dy>475 && y-6 <= 475)
+                          {y=475-dy;
                           flag=1;}
                         }
                      
                         if(x>12 && x<395)
-                        { if(y+bh>665 && y <=665)
-                          {y= 665-bh;
+                        { if(y+dy>665 && y-6 <=665)
+                          {y= 665-dy;
                           flag=1;}
                         }
                      
                         if(x>380 && x<647)
-                        { if(y+bh>625 && y <=625)
-                          {y= 625-bh;
+                        { if(y+dy>625 && y-6 <=625)
+                          {y= 625-dy;
                           flag=1;}
                         }
                       
@@ -508,116 +526,128 @@ switch(evt.keyCode)
 case 38:{                flag=0;
                         if(x>676 && x <779 )
                         {
-                        if (y-bh<0 && y>0)
-                        {  y=bh-10;
+                        if (y-dy<19 && y+6>=19)
+                        {  y=dy+19;
                         flag=1;     }                                //Top wall
                         }
                      
-                        if(x>605 && x <710 )
+                        if(x>605 && x <678 )
                         {
-                        if (y-bh<65 && y>65)
-                        {  y=68+bh;
+                        if (y-dy<80 && y+6>=80)
+                        {  y=80+dy;
                         flag=1;     }                                //Small
                         }
-                        if(x>605 && x <660 )
+                        if(x>605 && x <650 )
                         {
-                        if (y-bh<160 && y>160)
-                        {  y=160+bh;
+                        if (y-dy<162 && y+6>=162)
+                        {  y=162+dy;
                         flag=1;     }                                //Small
                         }
                      
-                        if(x>705 && x <785 )
+                        if(x>700 && x <785 )
                         {
-                        if (y-bh<160 && y>160)
-                        {  y=160+bh;
+                        if (y-dy<162 && y+6>=162)
+                        {  y=162+dy;
                         flag=1;     }                                //Small
                         }
                      
                         if(x>611 && x <678 )
                         {
-                        if (y-bh<80 && y>80)
-                        {  y=83+bh;
+                        if (y-dy<80 && y+6>=80)
+                        {  y=80+dy;
                         flag=1;     }                                //PC
                         }
                      
-                        if(x>965 && x <981 )
+                        if(x>946 && x <981 )
                         {
-                        if (y-bh<249 && y>249)
-                        {  y=249+bh;
+                        if (y-dy<249 && y+6>=249)
+                        {  y=249+dy;
                         flag=1;     }                                //Wall
                         }
                      
-                        if(x>1020 && x <1161 )
+                        if(x>1004 && x <1161 )
                         {
-                        if (y-bh<131 && y>131)
-                        {  y=131+bh;
+                        if (y-dy<131 && y+6>=131)
+                        {  y=131+dy;
                         flag=1;     }                                //Bed
                         }
                        if(x>970 && x<1180)
                        {
-                        if(y-bh <14 && y>14)
-                            {y=14+bh; flag=1;}
+                        if(y-dy <19 && y+6>=19)
+                            {y=19+dy; flag=1;}
                        }
                         if(x>775 && x <955 )
                         {
-                        if (y-bh<59 && y>59)
-                        {  y=59+bh;
+                        if (y-dy<59 && y+6>=59)
+                        {  y=59+dy;
                         flag=1;     }                                //Tub
                         }
 
                         //sect 4 ka part
                         if(x>645  && x<860)
                         {
-                        if (y -bh < 409 && y>=409 )
-                        {  y=409+bh;
+                        if (y -dy < 409 && y+6>=409 )
+                        {  y=409+dy;
                         flag=1;     }
                         }//
                      
-                        if(x>845  && x<884)
+                        if(x>830  && x<884)
                         {
-                        if (y -bh <556 && y>=556 )
-                        {  y=556+bh;
+                        if (y -dy <556 && y+6>=556 )
+                        {  y=556+dy;
                         flag=1;     }
                         }//
-                       if(x>615  && x<815)
+                        if(x>702  && x<730)
                         {
-                        if (y -bh <360 && y>=360 )
-                        {  y=360+bh;
+                        if (y -dy <348 && y+6>=348 )
+                        {  y=348+dy;
                         flag=1;     }
                         }//
-                       if(x>582  && x<834) //chnfd
+                       if(x>674  && x<703)
                         {
-                        if (y -bh <343 && y>=343 )
-                        {  y=343+bh;
+                        if (y -dy <366 && y+6>=366 )
+                        {  y=366+dy;
                         flag=1;     }
                         }//
+                       /*if(x>582  && x<834) //chnfd
+                        {
+                        if (y -dy <343 && y+6>=343 )
+                        {  y=343+dy;
+                        flag=1;     }
+                        }*/
                      
-                        if(x>920  && x<970)
+                        if(x>914  && x<970)
                         {
-                        if (y -bh <556 && y>=556 )
-                        {  y=556+bh;
+                        if (y -dy <556 && y+6>=556 )
+                        {  y=556+dy;
                         flag=1;     }
                         }//
-                     
-                      
+                        if(x>946  && x<981)
+                        {
+                        if (y -dy <398 && y+6>=398 )
+                        {  y=398+dy;
+                        flag=1;     }
+                        }//
+
+                                              
                         if(x>1035 && x<1182)
                         {
-                        if (y -bh <335 && y>=335)
-                        {  y=335+bh;
+                        if (y -dy <335 && y+6>=335)
+                        {  y=335+dy;
                         flag=1;     }
                         }
                      
-                        if(x>1010 && x<1164)
+                        if(x>1005 && x<1164)
                         {
-                        if (y -bh <656 && y>=656)
-                        {  y=656+bh;
+                        if (y -dy <656 && y+6>=656)
+                        {  y=656+dy;
                         flag=1;     }
                         }
                      
-                        if(x>970 && x<1050)
+                        if(x>980 && x<1050)
                         {
-                        if (y -bh <360 && y>=360)
-                        {  y=360+bh;
+                        if (y -dy <360 && y+6>=360)
+                        {  y=360+dy;
                         flag=1;     }
                         }
                         if (flag == 0 ){
@@ -627,96 +657,96 @@ case 38:{                flag=0;
         } break;                                //End case 38 sect 2
 case 40:{                  flag=0;
                         if(x>616 && x<652)
-                        { if(y+bh>125 && y<125)
-                          {y=125-bh;
+                        { if(y+dy>125 && y-6<=125)
+                          {y=125-dy;
                           flag=1;}                                //Wall
                         }                               
                      
                         if(x>705 && x<768)
-                        { if(y+bh>150 && y<150)
-                          {y=150-bh;
+                        { if(y+dy>150 && y-6<=150)
+                          {y=150-dy;
                           flag=1;}                                //Wall
                         }
                        if(x>612 && x<831)
                         {
                         if(x>630 && x<767)
-                        { if(y+bh>240 && y<240)
-                          {y=240-bh;
+                        { if(y+dy>240 && y-6<=240)
+                          {y=240-dy;
                           flag=1;}                                //Chair
                         }else if(x>620 && x<655 )
-                        { if(y+bh >272 && y<272)
-                          {y= 272-bh;flag=1;   }     }
+                        { if(y+dy >272 && y-6<=272)
+                          {y= 272-dy;flag=1;   }     }
                           else if(x>760 && x<800 )
-                        { if(y+bh >272 && y<272)
-                          {y= 272-bh;flag=1;   }     }
-                         else if(y+bh>285 && y<285)
-                          {y=285-bh;
+                        { if(y+dy >272 && y-6<=272)
+                          {y= 272-dy;flag=1;   }     }
+                         else if(y+dy>285 && y-6<=285)
+                          {y=285-dy;
                           flag=1;}                                //Chair
                         }
                      
                         if(x>1022 && x<1160)
-                        { if(y+bh>30 && y<30)
-                          {y=30-bh;
+                        { if(y+dy>30 && y-6<=30)
+                          {y=30-dy;
                           flag=1;}                                //Bed
                         }
                      
                         if(x>971 && x<1041)
-                        { if(y+bh>330 && y<330)
-                          {y=330-bh;
+                        { if(y+dy>330 && y-6<=330)
+                          {y=330-dy;
                           flag=1;}                                //Wall
                         }
                      
                         if(x>1021 && x<1184)
-                        { if(y+bh>300 && y<300)
-                          {y=300-bh;
+                        { if(y+dy>300 && y-6<=300)
+                          {y=300-dy;
                           flag=1;}                                //Wall
                         }
                      
                         if(x>955 && x<972)
-                        { if(y+bh>280 && y<280)
-                          {y=280-bh;
+                        { if(y+dy>280 && y-6<=280)
+                          {y=280-dy;
                           flag=1;}                                //Wall not sure
                         }
                                                         
                         //sect 4
                         if(x>665 && x<865)
-                        { if(y+bh> 380 && y <= 380)
-                          {y=380-bh;
+                        { if(y+dy> 380 && y-6 <= 380)
+                          {y=380-dy;
                           flag=1;}
                         }
                         if(x>955 && x<972)
-                        { if(y+bh>420 && y<420)
-                          {y=420-bh;
+                        { if(y+dy>420 && y-6<=420)
+                          {y=420-dy;
                           flag=1;}                                //Wall not sure
                         }
                         
                         if(x>920 && x<970)
-                        { if(y+bh> 523 && y <= 523)
-                          {y=523-bh;
+                        { if(y+dy> 523 && y-6 <= 523)
+                          {y=523-dy;
                           flag=1;}
                         }
                      
                         if(x>784 && x<965)
-                        { if(y+bh> 594 && y <= 594)
-                          {y=594-bh;
+                        { if(y+dy> 594 && y-6 <= 594)
+                          {y=594-dy;
                           flag=1;}
                         }
                      
                         if(x>642 && x<728)
-                        { if(y+bh>  564 && y <= 564)
-                          {y=564-bh;
+                        { if(y+dy>  564 && y-6 <= 564)
+                          {y=564-dy;
                           flag=1;}
                         }
                      
                         if(x>1008 && x<1165)
-                        { if(y+bh>547 && y <= 547)
-                          {y=547-bh;
+                        { if(y+dy>547 && y-6 <= 547)
+                          {y=547-dy;
                           flag=1;}
                         }
                      
                         if(x>644 && x<1183)
-                        { if(y+bh>665 && y <=665)
-                          {y= 665-bh;
+                        { if(y+dy>665 && y-6 <=665)
+                          {y= 665-dy;
                           flag=1;}
                         }
                      
@@ -777,7 +807,7 @@ case 37:{
                         {x=729+dx; flag=1; }                                //chair
                         }
                      
-                        if(y>267 && y<294)
+                        if(y>252 && y<294)
                         {
                         if (x-dx<671 && x>=671)
                         {x=671+dx; flag=1; }                                //chair
@@ -788,19 +818,7 @@ case 37:{
                         if (x-dx<654 && x>=654)
                         {x=654+dx; flag=1; }                                //wall
                         }
-                        if(y>304 && y<347 ){
-                            if(x-dx<830 && x>830)
-                                {x=830+dx;flag=1;}
-                        }
-                        if(y>272 && y<364 )
-                            {if(x-dx<801 && x>801)
-                                {x=801+dx;flag=1;}
-                            }
-                       if(y>240 && y<396)
-                        {
-                        if (x-dx<770 && x>=770)
-                        {x=770+dx; flag=1; }                                //wall
-                        }
+                    
                      
                         if(y>153 && y<166)
                         {
@@ -860,38 +878,38 @@ case 39:{
                 flag = 0; //Reset flag
                 if(y>10 && y<150)
                 {
-                if (x+dx<770 && x>770)
-                {x=770-dx; flag=1; }                            // wall
+                if (x+dx>750 && x<=750)
+                {x=750-dx; flag=1; }                            // wall
                 }
              
                 if(y>11 && y<249)
                 {
-                if (x+dx<965 && x>965)
-                {x=965-dx; flag=1; }                            // wall
+                if (x+dx>945 && x<=945)
+                {x=945-dx; flag=1; }                            // wall
                 }
              
                 if(y>300 && y<321)
                 {
-                if (x+dx<965 && x>965)
-                {x=965-dx; flag=1; }                            // wall
+                if (x+dx>945 && x<=945)
+                {x=945-dx; flag=1; }                            // wall
                 }
              
                 if(y>11 && y<60)
                 {
-                if (x+dx<805 && x>805)
-                {x=805-dx; flag=1; }                            //tub
+                if (x+dx>765 && x<=765)
+                {x=765-dx; flag=1; }                            //tub
                 }
              
                 if(y>43 && y<130)
                 {
-                if (x+dx<1021 && x>1021)
-                {x=1021-dx; flag=1; }                            //bed
+                if (x+d4>1001 && x<=1001)
+                {x=1001-dx; flag=1; }                            //bed
                 }
              
                 if(y>11 && y<700)
                 {
-                if (x+dx<1183 && x>1183)
-                {x=1183-dx; flag=1; }                            //mainwall
+                if (x+dx>1163 && x<=1163)
+                {x=1163-dx; flag=1; }                            //mainwall
                 }
 
                //sect 4
@@ -903,43 +921,43 @@ case 39:{
                         }
 
                         if (y>404 && y < 554) {
-                        if (x + dx > 851 && x <= 851) {
-                        x = 851-dx;
+                        if (x + dx > 831 && x <= 831) {
+                        x = 831-dx;
                         flag = 1;
                         }
                         }
                      
                         if (y>614 && y <695) {
-                        if (x + dx > 794 && x <= 794) {
-                        x = 794-dx;
+                        if (x + dx > 774 && x <= 774) {
+                        x = 774-dx;
                         flag = 1;
                         }
                         }
                      
                         if (y>434 && y <688) {
-                        if (x + dx > 963 && x <= 963) {
-                        x = 963-dx;
+                        if (x + dx > 943 && x <= 943) {
+                        x = 943-dx;
                         flag = 1;
                         }
                         }
                      
                         if (y>336 && y <691) {
-                        if (x + dx > 1183 && x <= 1183) {
-                        x = 1183-dx;
+                        if (x + dx > 1163 && x <= 1163) {
+                        x = 1163-dx;
                         flag = 1;
                         }
                         }
                      
-                        if (y>563 && y <659) {
-                        if (x + dx > 1019 && x <= 1019) {
-                        x = 1019-dx;
+                        if (y>543 && y <659) {
+                        if (x + dx > 1000 && x <= 1000) {
+                        x = 1000-dx;
                         flag = 1;
                         }
                         }
                      
                         if (y>317 && y <399) {
-                        if (x + dx > 962 && x <= 962) {
-                        x = 962-dx;
+                        if (x + dx > 942 && x <= 942) {
+                        x = 942-dx;
                         flag = 1;
                         }
                         }
@@ -953,7 +971,6 @@ case 39:{
 
 }      //Switch 2
 }        // Section 2&4
-
 }//keyfunction
 } //End keyInput
 
@@ -963,7 +980,7 @@ function timedCount() {
     //document.getElementById("txt").value = c;
    c = c + 1;
     if(c<60)
-    t = setTimeout(function(){ timedCount() }, 1000);
+    t = setTimeout(function(){ timedCount() }, 3000);
   else stopCount();
 }
 function startCount() {

@@ -17,6 +17,9 @@
         ctx.drawImage(floor,0,0,1200,700);
     
  //alert("floor");
+ if (inVault()) {
+            //ctx.drawImage()
+        return 0;           }
             this.frameIndex++;
               
             if (this.frameIndex >= 4)

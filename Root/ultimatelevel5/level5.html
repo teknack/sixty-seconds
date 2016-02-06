@@ -39,9 +39,9 @@ body{
  <div id="wallcontainer">
  <audio id="boom"> <source src=" assets/audio/TimeBomb.wav" type="audio/ogg "></audio>
  <audio id="boom2"> <source src=" assets/audio/boom.wav" type="audio/ogg "></audio>
- <audio id="audio"> <source src="assets/audio/huh.wav" type='audio/wav; '></audio>
+ <audio id="audio"> <source src="assets/audio/crash.wav" type='audio/wav; '></audio>
   
-  <audio id="collide"> <source src="assets/audio/clock.ogg" type='audio/ogg; '></audio>
+  <audio id="collide"> <source src="assets/audio/huh.ogg" type='audio/ogg; '></audio>
   <audio id="collect"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
   <audio id="bgsound"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
  <div id="canvas-container"><canvas id="canvas" width="1250" height=" 750"></canvas></div>
@@ -157,7 +157,8 @@ return section;
 function intersects( aLeft,  aRight,  aTop,  aBottom, bLeft,  bRight,  bTop,  bBottom) 
 {
   if( bRight >= aLeft && bBottom >= aTop && aRight >= bLeft && aBottom >= bTop)
-            {collided = true;
+            {
+              collided = true;
 
           if((boxx)==710 && (boxy)==421 ) 
           { 
@@ -232,165 +233,165 @@ switch(evt.keyCode)
             
             if(x> 14&& x< 1181)
                         {
-                        if (y-dy<19 && y+6>19 )
+                        if (y-dy<19 && y+6>=19 )
                         {y=dy+19 ; flag=1; }                             
                         }
             
             if(x> 18&& x<127 )
                         {
-                        if (y-dy< 213&& y+6> 213)
+                        if (y-dy< 213&& y+6>= 213)
                         {y=dy+213 ; flag=1; }                             
                         }
                         
             if(x>191 && x< 397)
                         {
-                        if (y-dy<194 && y+6> 194)
+                        if (y-dy<194 && y+6>= 194)
                         {y=dy+ 194; flag=1; }                             
                         }           
             
             if(x> 79&& x< 326)
                         {
-                        if (y-dy<418 && y+6> 418)
+                        if (y-dy<418 && y+6>= 418)
                         {y=dy+418 ; flag=1; }                             
                         }
                         
             if(x>432 && x< 450)
                         {
-                        if (y-dy<296 && y+6>296 )
+                        if (y-dy<296 && y+6>=296 )
                         {y=dy+296 ; flag=1; }                             
                         }
                         
             if(x> 18&& x< 132)
                         {
-                        if (y-dy<127 && y+6> 127)
+                        if (y-dy<127 && y+6>= 127)
                         {y=dy+127 ; flag=1; }                             
                         }
                         
             if(x> 229&& x< 386)
                         {
-                        if (y-dy< 89&& y+6>89 )
+                        if (y-dy< 89&& y+6>=89 )
                         {y=dy+89 ; flag=1; }                             
                         }
             
             if(x>18 && x< 80)
                         {
-                        if (y-dy< 516&& y+6> 516)
+                        if (y-dy< 516&& y+6>= 516)
                         {y=dy+516 ; flag=1; }                             
                         }
             
             if(x>327 && x< 432)
                         {
-                        if (y-dy<263 && y+6>263 )
+                        if (y-dy<263 && y+6>=263 )
                         {y=dy+263 ; flag=1; }                             
                         }
             
             if(x>287 && x< 432)
                         {
-                        if (y-dy<510 && y+6> 510)
+                        if (y-dy<510 && y+6>= 510)
                         {y=dy+510; flag=1; }                             
                         }
             
             
             if(x>229 && x<275 )
                         {
-                        if (y-dy< 645&& y+6> 645)
+                        if (y-dy< 645&& y+6>= 645)
                         {y=dy+ 645; flag=1; }                             
                         }
             
             if(x>367 && x< 405)
                         {
-                        if (y-dy< 643&& y+6> 643)
+                        if (y-dy< 643&& y+6>= 643)
                         {y=dy+ 643; flag=1; }                             
                         }
             
             if(x> 492&& x< 631)
                         {
-                        if (y-dy<68 && y+6>68 )
+                        if (y-dy<68 && y+6>=68 )
                         {y=dy+68 ; flag=1; }                             
                         }
             
             if(x>568 && x< 784)
                         {
-                        if (y-dy<330 && y+6>330 )
+                        if (y-dy<330 && y+6>=330 )
                         {y=dy+330 ; flag=1; }                             
                         }
             
             if(x>572 && x< 693)
                         {
-                        if (y-dy< 467&& y+6> 467)
+                        if (y-dy< 467&& y+6>= 467)
                         {y=dy+ 467; flag=1; }                             
                         }
             
             if(x> 277&& x< 366)
                         {
-                        if (y-dy< 672&& y+6> 672)
+                        if (y-dy< 672&& y+6>= 672)
                         {y=dy+ 672; flag=1; }                             
                         }
             
             if(x> 438&& x< 504)
                         {
-                        if (y-dy< 131&& y+6> 131)
+                        if (y-dy< 131&& y+6>= 131)
                         {y=dy+131 ; flag=1; }                             
                         }
             
             if(x>522 && x< 680)
                         {
-                        if (y-dy< 193&& y+6> 193)
+                        if (y-dy< 193&& y+6>= 193)
                         {y=dy+193 ; flag=1; }                             
                         }
             
             if(x> 450&& x< 631)
                         {
-                        if (y-dy< 418&& y+6> 418)
+                        if (y-dy< 418&& y+6>= 418)
                         {y=dy+ 418; flag=1; }                             
                         }
             
             if(x> 760&& x<883 )
                         {
-                        if (y-dy<129 && y+6>129 )
+                        if (y-dy<129 && y+6>=129 )
                         {y=dy+ 129; flag=1; }                             
                         }
             
             
             if(x> 881&& x< 968)
                         {
-                        if (y-dy< 206&& y+6>206 )
+                        if (y-dy< 206&& y+6>=206 )
                         {y=dy+206 ; flag=1; }                             
                         }
             
             if(x> 798&& x< 880)
                         {
-                        if (y-dy<230 && y+6> 230)
+                        if (y-dy<230 && y+6>= 230)
                         {y=dy+230 ; flag=1; }                             
                         }
             
             if(x> 760&& x< 950)
                         {
-                        if (y-dy< 404&& y+6> 404)
+                        if (y-dy< 404&& y+6>= 404)
                         {y=dy+ 404; flag=1; }                             
                         }
             
             if(x> 941&& x< 980)
                         {
-                        if (y-dy< 577&& y+6> 577)
+                        if (y-dy< 577&& y+6>= 577)
                         {y=dy+577 ; flag=1; }                             
                         }
             
             if(x> 917&& x< 1181)
                         {
-                        if (y-dy< 512&& y+6>512 )
+                        if (y-dy< 512&& y+6>=512 )
                         {y=dy+512 ; flag=1; }                             
                         }
             
             if(x>977 && x< 1181)
                         {
-                        if (y-dy< 287&& y+6> 287)
+                        if (y-dy< 287&& y+6>= 287)
                         {y=dy+ 287; flag=1; }                             
                         }
             
             if(x> 1010&& x< 1168)
                         {
-                        if (y-dy< 124&& y+6> 124)
+                        if (y-dy< 124&& y+6>= 124)
                         {y=dy+ 124; flag=1; }                             
                         }
 

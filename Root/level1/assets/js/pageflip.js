@@ -1,6 +1,6 @@
 
   function ajax_post(days_lived,waters,foods,fuels,dayofFuel,dayofFood,dayofWater){
- 
+
  $.post("dump.php",{no_of_days_lived:days_lived,water:waters,food:foods,fuel:fuels,day_of_no_food:dayofFood,day_of_no_water:dayofWater,day_of_no_fuel:dayofFuel},function(){});
 
 }
@@ -11,7 +11,7 @@ var point={
  total_fuel:0,
 total_food:0,
 total_water:0,
- health:0,
+ health:100,
  dayofFood:0,
  dayofFuel:0,
  dayofWater:0,
@@ -35,16 +35,14 @@ if(resources[i]==wat)
 	if(o!=null){ 
 		for(var i=0;i<resources.length;i++){
 
-				if(resources[i].id == "wat")
+				if(resources[i]== wat)
 				point.total_water++;
-			    if(resources[i].id == "fue")
+			    if(resources[i] == fue)
 				point.total_fuel++;
-			    if(resources[i].id == "foo")
+			    if(resources[i] == foo)
 				point.total_food++;
-                if(resources[i].id == "tor")
+                if(resources[i] == tor)
 				torch=1;
-			    if(resources[i].id == "first_aid")
-				first_aid=1;
                 
                 
 				}

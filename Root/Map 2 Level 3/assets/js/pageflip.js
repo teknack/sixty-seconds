@@ -11,7 +11,7 @@ var point={
  total_fuel:0,
 total_food:0,
 total_water:0,
- health:0,
+ health:100,
  dayofFood:0,
  dayofFuel:0,
  dayofWater:0,
@@ -21,7 +21,7 @@ total_water:0,
 days_lived:0,
  
 };
-var waters=0,foods=0,fuels=0;
+
 var spcl=0;
 var foodini=0;
 var fuelini=0;
@@ -85,12 +85,12 @@ if(resources[i]==wat)
 						   } 
 						else if(point.total_water <=0 && point.total_food > 0 && point.total_fuel > 0)    
 						   {
-						   point.total_food-=25;
+						   point.total_food-=0.25;
 
 						   point.health-=10;
 						   } 
 						else if(point.total_water <= 0 && point.total_food > 0 && point.total_fuel <=0)    
-						   { point.total_food-=25;
+						   { point.total_food-=0.25;
 						   point.health-=10;
 						   } 
 						else if(point.total_water <=0 && point.total_food <= 0 && point.total_fuel > 0)    

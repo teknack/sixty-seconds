@@ -2,41 +2,36 @@
  <head>
     <meta charset="UTF-8" />
     <title>Sixty Seconds</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
      <script src="assets/js/player1.js"> </script>
   <script src="assets/js/calculation1.js"> </script>
   </head>
 <style type="text/css">
 body{
-  background-image: url('images.jpg');
+  background-image: url('assets/img/images.jpg');
   background-position: absolute;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
-        #clock
+ #clock
          {
-             
+            text-align: center; 
             width: 100px;
-            height: 100px;
-          font-size: 2em;
+            height: 40px;
+            font-size: 2em;
             
             top:6%;
-            position: relative;
-            float: right;
+            position: fixed;
+            right:2%;
             
-           color:#00FF00;
-           background: red;
+            color:#00FF00;
+            outline:2px black solid;
+            z-index:300;
+            opacity:0.6;
+            background:black;
 
-        }
-
-        #canvas-container{
-          
-
-
-
-        }
-</style>
+        }</style>
  <body><div id="wallcontainer">
  <audio id="boom"> <source src=" TimeBomb.wav" type="audio/ogg "></audio>
  <audio id="boom2"> <source src=" boom.wav" type="audio/ogg "></audio>
@@ -57,8 +52,8 @@ var audbomb2 =document.getElementById('boom2');
  var buster = new Sprite("assets/img/Buster0.png");
 var flag = 0;
 var ctx = document.getElementById('canvas').getContext('2d');
-var dx = 5;
-var dy = 5;
+var dx = 12;
+var dy = 12;
 var xq= 60;
 var vault =new Array();
 var c = 0;        //for timer
@@ -67,9 +62,7 @@ var timer_is_on = 0;
 var section =null;
 var x =150;
 var y = 150;
-var exp=0; //for explosion
-var bw=12;                    //Half of buster's height and width
-var bh=12;
+
 var keyFunction=true;
 
 
@@ -85,16 +78,16 @@ var rx =new Array();
 var ry =new Array();
 
 var oxy =new Image();    var wat=new Image();    var fue=new Image();    var foo=new Image();
-oxy.src ="assets/img/oxygen.png";    wat.src ="assets/img/water.png"; //Issue: Check extensions. Add all resources
-fue.src="assets/img/fuel.jpg";    foo.src="assets/img/food.jpg";
+oxy.src ="assets/img/tor.png";    wat.src ="assets/img/water.png"; //Issue: Check extensions. Add all resources
+fue.src="assets/img/fuel.png";    foo.src="assets/img/food.png";
 
 for(var i=0;i<5;i++)
         {resources[i]= wat ;
          resources[i].id='wat';
         }
     for(var i=5;i<9;i++)
-        {resources[i]= feu ;
-         resources[i].id='feu';
+        {resources[i]= fue ;
+         resources[i].id='fue';
         }
     for(var i=9;i<13;i++)
         {resources[i]= foo ;
@@ -102,7 +95,7 @@ for(var i=0;i<5;i++)
         }
     
     resources[13] = oxy ;
-    resources[i].id = 'oxy'
+    resources[13].id = 'oxy'
 
 rx.push(1130);ry.push(40); //water
 rx.push(400);ry.push(45);
@@ -122,12 +115,7 @@ rx.push(1033);ry.push(353);
 
 rx.push(35);ry.push(570); //oxygen
 
-
-var rx =new Array(); //array of x coordinates of resources
-        rx.push(260);rx.push(220);rx.push(20);rx.push(90);rx.push(140);rx.push(280);rx.push(20);rx.push(90);rx.push(140);rx.push(280);
-        var ry =new Array();
-        ry.push(100);ry.push(240);ry.push(280);ry.push(360);ry.push(140);ry.push(240);ry.push(240);ry.push(280);ry.push(360);ry.push(140);ry.push(240);
-        var have =new Array();    //Created this
+  //Created this
         resource_count=resources.length;
 
 var ini=0;
@@ -149,7 +137,7 @@ else  if (x > 612  )
 return section;
 }
 //Resource collision detection piece of stupid fuckin code starts here
-            for(var i=0;i<rx.length;i++)
+            for(var i=0;i<resources.length;i++)
             {
             aBoxLeft=x-12;
             aBoxRight=x+12;
@@ -172,7 +160,7 @@ return section;
             function remove(i){
             if (have.length==0)   //if Player does not have resource then only he will grab it 
             {
-            have.push(resources[i].id);  
+            have.push(resources[i]);  
             resources.splice(i,1);
             rx.splice(i,1);
             ry.splice(i,1);
@@ -212,7 +200,7 @@ case 37: {flag=0;
            if(y>610 && y<685) //gas
            {
             if(x-dx<192 && x>=192)
-              {x=192+dx;flag=1;alert("this"); }
+              {x=192+dx;flag=1; }
            }
           
            if(y>0 && y<209)
@@ -501,7 +489,7 @@ case 39:
             x=714-dx;flag=1;
           }
          }
-         if(y>305 && y<685)
+         if(y>10 && y<685)
          {
           if(x+dx>1160 && x<=1160)
           {
@@ -718,7 +706,7 @@ function intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom, bBoxLeft,  bBo
 function remove(i){
      if (have.length==1)                                //Player already has resource
       return 0;
-      have.push(resources[i].id); 
+      have.push(resources[i]); 
       resources.splice(i,1);
             rx.splice(i,1);
             ry.splice(i,1);
@@ -749,8 +737,8 @@ if(collided)
 function timedCount() {
     //document.getElementById("txt").value = c;
     c = c + 1;
-    if(c<5)
-    t = setTimeout(function(){ timedCount() }, 1000);
+    if(c<60)
+    t = setTimeout(function(){ timedCount() },3000);
   else stopCount();
 }
 
@@ -768,10 +756,7 @@ function stopCount() {
     timer_is_on = 0;
     keyFunction=false;
     calculate(vault);
-  audbomb.play();
-  
-  audbomb2.play();
-
+ 
 
   window.location ="lastpagefinal/demo.php";
 
@@ -797,16 +782,47 @@ function init() {
                 
             document.getElementById('clock').innerHTML=c;
             if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
-            {
-            if (have[0]=='water')
-            {ctx.drawImage(water,l,350,15,15);
-            l+=20;
-            have.splice(water,1);}         //Remove from have array
-              if (have[0]=='oxy')
-            {ctx.drawImage(oxy,l,350,15,15);
-            l+=20;
-            have.splice(oxy,1);}
-            ctx.clearRect(405,350,25,75);
+            
+          {        
+
+            if (have[0]==wat)
+            { 
+            ctx.drawImage(wat,100,100,80,80);
+       
+            vault.push(have[0]);
+           
+            have.splice(wat,1);
+            
+            }   
+            
+              if (have[0]==oxy)
+            { 
+            ctx.drawImage(oxy,100,100,80,80);
+            vault.push(have[0]);
+            have.splice(oxy,1);
+            
+             }
+             
+             if (have[0]==foo)
+             {ctx.drawImage(foo,100,100,80,80);
+                vault.push(have[0]);
+             have.splice(foo,1); 
+      
+              }
+             
+             if (have[0]==fue)
+             {ctx.drawImage(fue,100,100,80,80);
+                vault.push(have[0]);
+             have.splice(fue,1);
+            
+               }
+             
+             if (have[0]==oxy)
+             {ctx.drawImage(fue,100,100,80,80);  //CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+             vault.push(have[0]);
+             have.splice(oxy,1);  
+               }
+             
             }
            
         
@@ -821,7 +837,7 @@ function init() {
            requestAnimationFrame(draw);
           }
 
-          if(c<5)
+          
           draw();
           //document.getElementById("txt").value = 0;
 

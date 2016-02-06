@@ -97,7 +97,7 @@ $dayoffuel =$row['7'];
               
 			</div>
 			<div class="links">
-			 <h1><a href="../secondlevel/level2.html"  alt="next level">Next Level</a></h1> 
+			 <h1><a href="../../secondlevel/level2.html"  alt="next level">Next Level</a></h1> 
 			 <h1><a href="../level1.html" alt="next level">Retry</a></h1>  
 			</div>
 				
