@@ -1,9 +1,8 @@
 
   function ajax_post(days_lived,waters,foods,fuels,dayofFuel,dayofFood,dayofWater){
-alert("posting "+ waters);
+ 
  $.post("dump.php",{no_of_days_lived:days_lived,water:waters,food:foods,fuel:fuels,day_of_no_food:dayofFood,day_of_no_water:dayofWater,day_of_no_fuel:dayofFuel},function(){});
-alert('posted');
-window.location="../../dump.php";
+
 }
 
 
