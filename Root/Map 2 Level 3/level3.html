@@ -89,11 +89,20 @@ var wat=new Image();
 var fue=new Image();   
 var foo=new Image();
 var tor=new Image();
-oxy.src ="assets/img/fuel.png";   
+var port1=new Image();
+var port2=new Image();
+
+
+oxy.src ="assets/img/gas.png";   
 wat.src ="assets/img/water.png";  
 fue.src="assets/img/fuel.png";    
 foo.src="assets/img/foo.png";  
 tor.src="assets/img/tor.png";
+port1.src="assets/img/portal1.png";
+port2.src="assets/img/portal2.png";
+
+
+
 for(var i=0;i<5;i++)
         {resources[i]= wat ;
          resources[i].id='wat';
@@ -110,29 +119,39 @@ for(var i=0;i<5;i++)
         resources[13] = oxy ;
         resources[13].id = 'oxy'
 
+        resources[14] = tor ;
+        resources[14].id = 'tor'
+
 rx.push(800);ry.push(93); //water
 rx.push(669);ry.push(562);
-rx.push(1001);ry.push(300);
-rx.push(466);ry.push(117);
-rx.push(353);ry.push(649);
+rx.push(1001);ry.push(328);
+rx.push(486);ry.push(137);
+rx.push(353);ry.push(669);
 
 rx.push(1144);ry.push(164); //feul
 rx.push(761);ry.push(380);
-rx.push(993);ry.push(502);
-rx.push(758);ry.push(649);
+rx.push(993);ry.push(522);
+rx.push(758);ry.push(659);
 
-rx.push(476);ry.push(334); //food
-rx.push(924);ry.push(581);
+rx.push(476);ry.push(384); //food
+rx.push(944);ry.push(601);
 rx.push(134);ry.push(654);
-rx.push(543);ry.push(120);
+rx.push(543);ry.push(137);
 
 rx.push(493);ry.push(436); //oxygen
+rx.push(200);ry.push(200); //tor
 
  
         var have =new Array();    //Created this
         resource_count=resources.length;
     
-      
+      function in_portal()
+      {
+        if(x>334 && x<378)
+          if(y>272 && y<322)
+            {x=840;
+            y=440;}
+     }
 
 function inVault() {    //Cupboard in room 1, Section 1
 if (x>74 && x<151)
@@ -174,6 +193,7 @@ function remove(i){
 
 function keyInput(evt) {
  aud.play();
+ in_portal();
  if(keyFunction)
  {
 for(var i=0;i<resources.length;i++)                         // Resource Intersection Part 1
@@ -1003,7 +1023,9 @@ function init() {
           function draw() {
             //ctx.clearRect(0,0,1200,700);
             document.getElementById("clock").innerHTML=c;
-          
+          ctx.drawImage(port1,334,275,50,50);
+            ctx.drawImage(port2,820,400,70,70);
+            
             if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
             {
             
