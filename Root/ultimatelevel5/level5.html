@@ -1,10 +1,18 @@
+<!-- Added gas mask in place of oxy but still call it oxy
+     Fixed portal positions
+     Fixed images for torch and key
+     First-Aid yet to be done
+ -->
+
+
+
+
 <html>
  <head>
     <meta charset="UTF-8" />
     <title>Sixty Seconds</title>
      <script src="assets/js/player.js"> </script>
       <script src="assets/js/pageflip.js"> </script>
-     
       <script src="assets/js/jquery.min.js"></script>
  
   </head>
@@ -64,8 +72,8 @@ var c = 0;        //for timer
 var t;            //for timer
 var timer_is_on = 0;
 var section =null;
-var x = 80;
-var y = 50;
+var x = 120;
+var y = 110;
 var bBoxRight;
 var bBoxLeft;
 var bBoxBottom;
@@ -88,6 +96,9 @@ var resources =new Array();
 var resource_count=0;
 var rx =new Array();
 var ry =new Array();
+
+
+
 var oxy =new Image();   
 var wat=new Image(); 
 var fue=new Image();   
@@ -95,22 +106,29 @@ var foo=new Image();
 var tor=new Image();
 var port1=new Image();
 var port2=new Image();
-oxy.src ="assets/img/fuel.png";   
+var key=new Image();
+
+oxy.src ="assets/img/gas.png";   
 wat.src ="assets/img/water.png";  
 fue.src="assets/img/fuel.png";    
 foo.src="assets/img/foo.png";  
 tor.src="assets/img/tor.png";
 port1.src="assets/img/portal1.png";
-port2.src="assets/img/portal2.png"
+port2.src="assets/img/portal2.png";
+key.src="assets/img/key.png";
+
 for (var i=0;i<4;i++)    
  {resources[i]=wat; resources[i].id='wat';  } // 0 to 3 water
 for (var i=4;i<10; i++)  
  {resources[i]=foo; resources[i].id='foo'; }// 4 to 9 food
 for (var i=10;i<13; i++) 
  {resources[i]=fue; resources[i].id='fue'; }// 10 to 12 fuel
+
 resources[13]=oxy; resources[i].id='oxy'; 
-resources[14]=tor; resources[i].id='tor';
- 
+
+resources[14]=key; resources[i].id='key';
+
+resources[15]=tor; resources[i].id='tor'; 
  
 rx.push(654);rx.push(110);rx.push(496);rx.push(475);
 ry.push(40);ry.push(440);ry.push(80);ry.push(647);
@@ -123,16 +141,16 @@ ry.push(589);ry.push(531);ry.push(32);
 
 rx.push(33);ry.push(164);
 rx.push(710);ry.push(421);
- 
+rx.push(200);ry.push(200);   //torch 
         var have =new Array();    //Created this
         resource_count=resources.length;
 
       function in_portal()
       {
-        if(x>184 && x<184+150)
-          if(y>445 && y<445+150)
-            {x=50;
-            y=100;}
+        if(x>334 && x<378)
+          if(y>272 && y<322)
+            {x=840;
+            y=440;}
      }
 function inVault() {    //Cupboard in room 1, Section 1
 if (x>1045 && x<1170)
@@ -674,7 +692,7 @@ case 37: {flag=0;
            }
            
            
-           if(y>174&& y<213) //gas
+           if(y>174&& y<213) //oxy
            {
             if(x-dx<127&& x>=127)
               {x=127+dx;flag=1;  }
@@ -1196,47 +1214,53 @@ function init() {
           function draw() {
             //ctx.clearRect(0,0,1200,700);
             document.getElementById("clock").innerHTML=c;
-            ctx.drawImage(port1,300,350,50,50);
-            ctx.drawImage(port2,820,372,70,70);
+            ctx.drawImage(port1,334,275,50,50);
+            ctx.drawImage(port2,820,400,70,70);
             
             if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
             {
             
             if (have[0]==wat)
             { 
-            ctx.drawImage(wat,100,100,80,80);
+            ctx.drawImage(wat,1045,350,80,80);
             vault.push(have[0]);
             have.splice(wat,1);
             }   
             
               if (have[0]==oxy)
             { 
-            ctx.drawImage(oxy,100,100,80,80);
+            ctx.drawImage(oxy,1045,350,80,80);
             vault.push(have[0]);
             have.splice(oxy,1);
              }
              
              if (have[0]==foo)
-             {ctx.drawImage(foo,100,100,80,80);
+             {ctx.drawImage(foo,1045,350,80,80);
                 vault.push(have[0]);
              have.splice(foo,1); 
            
               }
              
              if (have[0]==fue)
-             {ctx.drawImage(fue,100,100,80,80);
+             {ctx.drawImage(fue,1045,350,80,80);
                 vault.push(have[0]);
              have.splice(fue,1);
                }
              
-             if (have[0]==oxy)
-             {ctx.drawImage(fue,100,100,80,80);  //CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-             vault.push(have[0]);
-             have.splice(oxy,1);  
+              if (have[0]==key)
+             {ctx.drawImage(key,1045,350,80,80);
+                vault.push(have[0]);
+             have.splice(key,1);
                }
-             
-             if (have[0]==tor)
-             {ctx.drawImage(tor,100,100,80,80);
+
+             if (have[0]==key)
+             {ctx.drawImage(key,1045,350,80,80);
+             vault.push(have[0]);
+             have.splice(key,1);   
+             }
+
+              if (have[0]==tor)
+             {ctx.drawImage(tor,1045,350,80,80);
              vault.push(have[0]);
              have.splice(tor,1);   
              }

@@ -1,10 +1,18 @@
+<!-- Added gas mask in place of oxy but still call it oxy
+     Randomly added portals and key and torch.
+     Change in_portal function accordingly 
+     First-Aid yet to be done
+     Background doesnt show?
+ -->
+
+
+
 <html>
  <head>
     <meta charset="UTF-8" />
     <title>Sixty Seconds</title>
      <script src="assets/js/player.js"> </script>
       <script src="assets/js/pageflip.js"> </script>
-     
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
  
   </head>
@@ -84,26 +92,40 @@ var resources =new Array();
 var resource_count=0;
 var rx =new Array();
 var ry =new Array();
+
+
 var oxy =new Image();   
 var wat=new Image(); 
 var fue=new Image();   
 var foo=new Image();
 var tor=new Image();
-oxy.src ="assets/img/fuel.png";   
+var port1=new Image();
+var port2=new Image();
+var key=new Image();
+
+oxy.src ="assets/img/gas.png";   
 wat.src ="assets/img/water.png";  
 fue.src="assets/img/fuel.png";    
 foo.src="assets/img/foo.png";  
 tor.src="assets/img/tor.png";
+port1.src="assets/img/portal1.png";
+port2.src="assets/img/portal2.png";
+key.src="assets/img/key.png";
 
 for (var i=0;i<4;i++)    
  {resources[i]=wat; resources[i].id='wat';  } 
+
 for (var i=4;i<8; i++)  
  {resources[i]=foo; resources[i].id='foo'; }
+
 for (var i=8;i<12; i++) 
  {resources[i]=fue; resources[i].id='fue'; }
+
 resources[12]=oxy; resources[i].id='oxy'; 
-resources[13]=tor; resources[i].id='tor';
- 
+
+resources[13]=key; resources[i].id='key';
+resources[14]=tor; resources[i].id='tor'; 
+
  
 rx.push(543);ry.push(132); //water
 rx.push(1004);ry.push(333);
@@ -123,15 +145,23 @@ rx.push(345);ry.push(667);
 rx.push(800);ry.push(93); //oxygen
 
 rx.push(809);ry.push(435); //torch or key
- 
+ rx.push(200);ry.push(200);
  
 
         var have =new Array();    //Created this
         resource_count=resources.length;
     
       
+ function in_portal()
+      {
+        if(x>334 && x<378)
+          if(y>272 && y<322)
+            {x=840;
+            y=440;}
+     }
 
-function inVault() {    //Cupboard in room 1, Section 1
+
+function inVault() {     
 if (x>74 && x<151)
 {
 if(y>209 && y<323 )
@@ -171,6 +201,7 @@ function remove(i){
 
 function keyInput(evt) {
  aud.play();
+ in_portal();
  if(keyFunction)
  {
 for(var i=0;i<resources.length;i++)                         // Resource Intersection Part 1
@@ -983,7 +1014,9 @@ function init() {
           function draw() {
             //ctx.clearRect(0,0,1200,700);
             document.getElementById("clock").innerHTML=c;
-          
+            ctx.drawImage(port1,334,275,50,50);
+            ctx.drawImage(port2,820,400,70,70);
+            
             if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
             {
             
