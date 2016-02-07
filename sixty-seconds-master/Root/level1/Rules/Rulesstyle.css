@@ -1,0 +1,75 @@
+body {
+background:url('bg.png');
+background-size:100%;
+cursor: default;
+}
+#overlay {
+    display:none;    
+    position:fixed;
+    top:0;
+    left:0;	
+    width:100%;      
+    height:100%;     
+    background:black; 
+    opacity:1;     
+    z-index:11;   
+}
+
+#bg {
+padding-top:10%;
+z-index:3;
+opacity:0.7;
+color:white;
+text-align:center;
+}
+
+#popup {
+    line-height:130%;
+	outline: solid black 2px;
+	color:white;
+    display:none;
+    position:fixed; 
+    margin:auto; 
+    width:100%;     
+    height:50%; 
+    padding:1% ;
+    background-color :#222854;
+	background-size:100%;
+    z-index:15;   
+    opacity:0.8;
+	top:10%;
+	 
+}
+#popup a {
+ background:#1a6570;
+ position:absolute;
+ bottom:3%;
+ right:3%;
+ margin:auto;
+}
+#popup a:hover {
+background:green;
+} 
+
+.links{
+ margin-left: 44%;   
+ font-style: oblique;
+ position:absolute;
+ top:45%;
+ z-index: 10; 
+ }
+
+ a:link, a:visited {
+    display: block;
+	background-color:#1a6570;
+    z-index:2000;  
+    color: white;
+    padding: 10px 30px;
+    text-align: center;	
+    text-decoration: none;
+    font-size: 18px;
+}
+
+a:hover, a:active {
+	background-color: green;
+}

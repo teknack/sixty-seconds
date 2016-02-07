@@ -1,0 +1,116 @@
+ body{
+	background: url("../img/post.jpg");
+	padding:3px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: 100% 100%;
+	cursor:default;
+}
+
+  h2, p {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #444;
+	color: #333;
+	font-family: Helvetica, sans-serif;
+}
+	#justtext{
+	background-color: rgba(0,0,0,0.6);
+	position:absolute;
+	max-width:400px;
+	 height:auto;
+	top:30px;
+	left:30px;
+	padding:10px;
+	color:white;
+	}
+	#book {
+	border: 2px solid #ac3939;
+	background: url("../img/book.png") no-repeat;
+	position: absolute;
+	width: 400px;
+	height: 260px;
+	right:10%;
+	top: 1%; 
+	}
+	bookparent {
+	background:red;
+	position: absolute;
+	width:800px;
+	height:500px;
+	top:50%;
+	left:10%;
+	}
+ 
+#pages section {
+    
+	background: url("../img/paper.png") no-repeat;
+	display: block;
+	width: 200px;
+	height: 250px;
+	position: absolute;
+	left: 200px;
+	//left: 415px;
+	top: 5px;
+	overflow: hidden;
+}
+	#pages section>div {
+		display: block;
+		width: 200px;
+		height: 250px;
+		font-size: 12px;
+	}
+	#pages section p,
+	#pages section h2 {
+		padding: 3px 35px;
+		line-height: 1.4em;
+		text-align: justify;
+	}
+	#pages section h2{
+		margin: 15px 0 10px;
+	}
+
+#pageflip-canvas {
+	position: absolute;
+	z-index: 100;
+}
+
+.exampleoverlay {
+	padding-left:10px;
+    font-style: oblique;
+    position: fixed;
+    top: 40%;
+    left: 0;
+    height: auto;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 8;
+	color:white;
+}
+.links{
+font-style: oblique;
+ position:absolute;
+ bottom:10%;
+ right:0;
+  z-index: 10;
+ }
+a:link, a:visited {
+    display: block;
+	background-color: #ac3939;
+      b ackground-color: #f44336;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;	
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+a:hover, a:active {
+	background-color: green;
+}
+ 

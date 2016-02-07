@@ -1,0 +1,45 @@
+<html>
+<script>
+window.onload = function() {
+  document.getElementById("LearnMoreBtn").onclick = function(){
+        var overlay = document.getElementById("overlay");
+        var popup = document.getElementById("popup");
+        overlay.style.display = "block";
+        popup.style.display = "block";
+    };
+    
+  document.getElementById("CloseBtn").onclick = function(){
+        var overlay = document.getElementById("overlay");
+        var popup = document.getElementById("popup");
+        overlay.style.display = "none";
+        popup.style.display = "none";      
+  }
+};
+
+</script>
+<link href="Rulesstyle.css" type="text/css" rel="stylesheet">
+<body>
+<div class="links">
+			 <h1><a href="#level_2" alt="next level" id="LearnMoreBtn"> <b>RULES</b> </a></h1> 
+			 
+			</div>
+			<div id="bg">
+    Moving around getting boring?<br><hr width=55%>Lets warp<br><hr width=45%> 
+</div>
+<div id="overlay"></div>
+<div id="cont">
+<div id="popup">
+    RULES:<br><br>
+	[1] The clock starts ticking when you start moving<br>
+	[2] The Gas mask is essential to survive in the post apocalyptic world<br>
+	[3] You can carry only a single resource at a time. Plan accordingly <br>
+	[4] Survive 30 days atleast to proceed to the next level<br>
+	[5] The portals help you move swiftly through the house.  
+    <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Blue: In  &nbsp&nbsp&nbsp&nbsp Red : Out
+    <h1><a href="../level3.html" alt="next level" id="CloseBtn">Got It !</a></h1>  
+</div>
+ 
+</div>
+
+</body>
+</html>
