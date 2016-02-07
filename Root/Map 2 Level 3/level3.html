@@ -139,7 +139,7 @@ rx.push(134);ry.push(654);
 rx.push(543);ry.push(137);
 
 rx.push(493);ry.push(436); //oxygen
-rx.push(200);ry.push(200); //tor
+rx.push(250);ry.push(200); //tor
 
  
         var have =new Array();    //Created this
@@ -147,10 +147,10 @@ rx.push(200);ry.push(200); //tor
     
       function in_portal()
       {
-        if(x>334 && x<378)
-          if(y>272 && y<322)
-            {x=840;
-            y=440;}
+        if(x>834 && x<884)
+          if(y>175 && y<225)
+            {x=65;
+            y=65;}
      }
 
 function inVault() {    //Cupboard in room 1, Section 1
@@ -1023,8 +1023,8 @@ function init() {
           function draw() {
             //ctx.clearRect(0,0,1200,700);
             document.getElementById("clock").innerHTML=c;
-          ctx.drawImage(port1,334,275,50,50);
-            ctx.drawImage(port2,820,400,70,70);
+          ctx.drawImage(port1,834,175,50,50);
+            ctx.drawImage(port2,60,60,70,70);
             
             if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
             {

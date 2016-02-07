@@ -1,9 +1,5 @@
-<!-- Added gas mask in place of oxy but still call it oxy
-     Randomly added portals and key and torch.
-     Change in_portal function accordingly 
-     First-Aid yet to be done
-     floorpanel doesnt show?
- -->
+<!-- Resources positioning?
+     First-Aid yet to be done -->
 
 
 <html>
@@ -143,8 +139,8 @@ rx.push(345);ry.push(667);
 
 rx.push(800);ry.push(93); //oxygen
 
-rx.push(809);ry.push(435); //torch or key
- rx.push(200);ry.push(200);
+rx.push(809);ry.push(435); //key
+ rx.push(300);ry.push(200);//torch
  
 
         var have =new Array();    //Created this
@@ -153,10 +149,10 @@ rx.push(809);ry.push(435); //torch or key
       
 function in_portal()
       {
-        if(x>334 && x<378)
-          if(y>272 && y<322)
-            {x=840;
-            y=440;}
+        if(x>864 && x<900)
+          if(y>375 && y<425)
+            {x=265;
+            y=250;}
      }
 	 
 function inVault() {    //Cupboard in room 1, Section 1
@@ -182,7 +178,7 @@ function intersects( aLeft,  aRight,  aTop,  aBottom, bLeft,  bRight,  bTop,  bB
   if( bRight >= aLeft && bBottom >= aTop && aRight >= bLeft && aBottom >= bTop)
             {collided = true;
 
-          if((boxx)==800 && (boxy)==93 ) 
+          if((boxx)==809 && (boxy)==435 ) 
           { 
              r=1;
           }else
@@ -220,6 +216,8 @@ bBoxLeft=rx[i]-15;
 bBoxRight=rx[i]+25;
 bBoxTop=ry[i]-5;
 bBoxBottom=ry[i]+28;
+boxx=rx[i];
+boxy=ry[i];
 
 r=intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
                            bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom);
@@ -1046,8 +1044,8 @@ function init() {
           function draw() {
             //ctx.clearRect(0,0,1200,700);
             document.getElementById("clock").innerHTML=c;
-          ctx.drawImage(port1,334,275,50,50);
-            ctx.drawImage(port2,820,400,70,70);
+          ctx.drawImage(port1,864,375,50,50);
+            ctx.drawImage(port2,260,245,70,70);
 			
             if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
             {
@@ -1079,10 +1077,10 @@ function init() {
              have.splice(fue,1);
                }
              
-             if (have[0]==oxy)
-             {ctx.drawImage(fue,100,100,80,80);  //CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+             if (have[0]==key)
+             {ctx.drawImage(key,100,100,80,80);  
              vault.push(have[0]);
-             have.splice(oxy,1);  
+             have.splice(key,1);  
                }
              
              if (have[0]==tor)
