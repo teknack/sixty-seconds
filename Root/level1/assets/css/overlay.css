@@ -1,32 +1,16 @@
-: #fff;
-}
-
-.exampleoverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 10;
-}
-
-.examplemodal {
-    width: 900px;
-    height: 500px;
-    line-height: 200px;
-    position: fixed;
-    top: 30%; 
-    left: 30%;
-    margin-top: -100px;
-    margin-left: -150px;
-    background-color: #058294;
-    border-radius: 5px;
+#leadlink a:link, #leadlink a:visited{
+    display: block;
+    background-color:#1a6570;
+    z-index:2000;  
+    color: white;
+    padding: 10px 30px;
     text-align: center;
-    z-index: 11; /* 1px higher than the overlay layer */
+    text-decoration: none;
+    font-size: 18px;
+    width:15%;
+    margin:auto;
 }
 
-.maincontent {
-    margin: 10px;
+#leadlink a:hover, #leadlink a:active {
+  background-color: green;
 }
-

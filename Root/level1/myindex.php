@@ -14,6 +14,7 @@ $mega=$row[3];
   <title> </title> <meta name = "viewport"
 content = "width=device-width, initial-scale=1.0" />
   <!-- styles -->
+  <link rel = "stylesheet" href = "assets/css/overlay.css">  <!-- latest update 7/2/2016  -->
   <link href = "assets/css/bootstrap.css"
 rel = "stylesheet" />
   <link href = "assets/css/bootstrap-theme.css"
@@ -39,7 +40,7 @@ class = "navbar-toggle"
 data - toggle = "collapse"
 data - target = "#bs-example-navbar-collapse-1">
   <span class = "icon-bar"> </span> <span class = "icon-bar"> </span> <span class = "icon-bar"> </span> </button> <a class = "navbar-brand"
-href = "level1/Rules.html"> PLAY! </a> </div>
+href = "../lp/lp.php"> PLAY! </a> </div>
 
 <div class = "navigation">
   <div class = "collapse navbar-collapse"
@@ -75,10 +76,10 @@ alt = "Now all thats left is a minute"> </a> </li> <li style = "height:100%">
   <h1> <font style = "color:gray"> <?php echo $username." MEGAPOINTS".$mega ;?> Teknack 2016 </font></h1>
 
   <br> <br> <br>
-  </header> <div class="w3-container"> <strong>SURVIVE OR PERISH</strong> </div> <br><br><br><br><br> <div class = "sub-heading">
+  </header> <div class="w3-container"><strong>SURVIVE OR PERISH</strong> </div> <br><br><br> Check out the leaderboard below!<br><br> <div class = "sub-heading">
 
   Go on now,
-  for the clock ticks away. <br>
+  for the clock ticks away. <br> 
   <img src = "assets/img/logo2.gif"
 style = "width:15%"> </img> <br><br><br>	 	 </div>  </div></div>
   </li> </ul> </section>
@@ -159,7 +160,7 @@ class = "section gray">
   <div class = "col-md-8 col-md-offset-2">
   <div class = "heading">
   <h3> <span> SCORING </span></h
-3>
+3> 
   </div> <div class = "sub-heading">
   <p>
   Let 's have a bit of fun while we reap the consequences of our misdeeds, shall we? </p> <p>
@@ -215,7 +216,8 @@ These help you get to the top <br>
 
     <div class = "aligncenter">
     See you in the leaderboards!
-
+    <br><br>
+     <div id="leadlink"> <a href="../leader/lead.php" alt="Contact Akash Gund" > <b>Survivors</b> </a> </div>
     </div> </div>
     </div>
 
@@ -235,7 +237,7 @@ These help you get to the top <br>
 	$(document).ready(function(){
 	  $('#slippry-slider').slippry(
 		defaults = {
-			transition: 'horizontal',
+			transition: 'horizontal', 
 			useCSS: true,
 			speed: 4000,
 			pause: 8000,

@@ -1,0 +1,143 @@
+body {
+margin:0;
+padding:0;
+background: url(lpbgg.png) no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover; 
+}
+
+#one {	
+background-image:url("paintone.png");	
+background-size:100% 100%;
+position:absolute;
+left:0;
+width:33%;
+height:100%;
+}
+#two {
+background-image:url("painttwo.png");	
+background-size:100% 100%;
+position:absolute;
+left:33%;
+width:33%;
+height:100%;
+}
+#three {
+background-image:url("three.png");	
+background-size:100% 100%;	
+position:absolute;
+left:55%;
+width:35%;
+height:100%; 
+}
+
+
+
+a{outline:0;
+}
+
+#gundone a,#gundtwo a,#gundthree a,#gundfour a,#gundfive a{  
+	display:none;
+	cursor:default;
+}
+
+#overone,#gundone a{
+
+position:absolute;
+height:18%;	
+width:13%;
+left:1%;
+bottom:12%;	
+
+}
+
+#overone {
+border-radius:15;
+opacity: 0.6;
+background:gray;	
+}
+
+#overtwo,#gundtwo a{
+ 
+position:absolute;
+height:18%;	
+width:13%;
+left:17%;
+bottom:35%;	
+ 
+}
+
+#overtwo {
+border-radius:15;
+opacity: 0.6;
+background:gray;	
+}
+
+#overthree,#gundthree a{ 
+position:absolute;
+height:19%;	
+width:12.5%;
+left:35.5%;
+bottom:33.5%;	 
+}
+#overthree {
+border-radius:15;
+opacity: 0.6;
+background:gray; 
+}
+
+
+
+#overfour,#gundfour a{ 
+position:absolute;
+height:18%;	
+width:12%;
+left:52%;
+bottom:57.5%;	 
+}
+#overfour{ border-radius:15;
+opacity: 0.6;
+background:gray;  }
+
+#overfive,#gundfive a{ 
+position:absolute;
+height:22%;	
+width:16%;
+left:71%;
+bottom:77%;	 
+}
+ #overfive{ border-radius:15;
+opacity: 0.6;
+background:gray;  }
+#leadlink{
+position:relative;
+}
+
+#leadlink a:link, #leadlink a:visited {
+    display: block;
+    background-color:black;
+    z-index:2000; 
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    width:15%;
+    margin:auto;
+    cursor:pointer;
+    z-index:999999;
+
+}
+
+#leadlink a:hover, #leadlink a:active {
+  background-color: green;
+  color:white;
+  z-index:999999;
+  cursor:pointer;
+    z-index:999999;
+    border-radius: 0% 0% 10% 10%;
+  
+}
+

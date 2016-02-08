@@ -1,7 +1,7 @@
 <?php include 'connect.php';
 $days_lived=$_POST['no_of_days_lived']; 
 //session variable
-$user=$_POST['username'];
+$user='dumy';
 $level_score=$_POST['no_of_days_lived'];
 $water=$_POST['water'];
 $food=$_POST['food'];
@@ -15,8 +15,8 @@ $result1=mysql_query($sql1) or die(mysql_error());
 $row=mysql_fetch_array($result1);
 	
 if($row)
-{  $sql2="UPDATE level1 set tk_water='$water'
-	       WHERE tk_emailid =$user AND '$water' > tk_water";
+{  $sql2="UPDATE level1 set tk_level_score='$level_score'
+	       WHERE tk_emailid ='$user' AND '$level_score' > tk_level_score";
  $result2=mysql_query($sql2) or die(mysql_error());
 }
 else

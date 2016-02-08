@@ -5,7 +5,7 @@
      <script src="assets/js/player.js"> </script>
       <script src="assets/js/pageflip.js"> </script>
      
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="assets/js/jquery.min.js"></script>
  
   </head>
 <style type="text/css">
@@ -37,18 +37,17 @@ body{
  <body>
 
  <div id="wallcontainer">
- <audio id="boom"> <source src=" assets/audio/TimeBomb.wav" type="audio/ogg "></audio>
- <audio id="boom2"> <source src=" assets/audio/boom.wav" type="audio/ogg "></audio>
- <audio id="audio"> <source src="assets/audio/huh.wav" type='audio/wav; '></audio>
+ 
+ <audio id="audio"> <source src="assets/audio/60_seconds.ogg" type='audio/ogg; '></audio>
   
-  <audio id="collide"> <source src="assets/audio/clock.ogg" type='audio/ogg; '></audio>
+  <audio id="collide"> <source src="assets/audio/body.ogg" type='audio/ogg; '></audio>
   <audio id="collect"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
-  <audio id="bgsound"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
+
  <div id="canvas-container"><canvas id="canvas" width="1250" height=" 750"></canvas></div>
   <span id="clock"></span>
  </div>
 <script type="text/javascript">
-var aud=document.getElementById("audio");   //Walk
+var aud=document.getElementById("audio");   //background
 var collide=document.getElementById("collide");  //Wall
 var collect=document.getElementById("collect");  //Resource
 var buster = new Sprite("assets/img/Buster0.png");
@@ -122,24 +121,24 @@ for(var i=0;i<5;i++)
         resources[14] = tor ;
         resources[14].id = 'tor'
 
-rx.push(800);ry.push(93); //water
-rx.push(669);ry.push(562);
-rx.push(1001);ry.push(328);
-rx.push(486);ry.push(137);
-rx.push(353);ry.push(669);
+rx.push(800);ry.push(73); //water
+rx.push(669);ry.push(542);
+rx.push(1001);ry.push(308);
+rx.push(476);ry.push(117);
+rx.push(353);ry.push(649);
 
-rx.push(1144);ry.push(164); //feul
-rx.push(761);ry.push(380);
-rx.push(993);ry.push(522);
-rx.push(758);ry.push(659);
+rx.push(1144);ry.push(144); //feul
+rx.push(761);ry.push(360);
+rx.push(993);ry.push(502);
+rx.push(758);ry.push(639);
 
-rx.push(476);ry.push(384); //food
-rx.push(944);ry.push(601);
-rx.push(134);ry.push(654);
-rx.push(543);ry.push(137);
+rx.push(476);ry.push(364); //food
+rx.push(924);ry.push(581);
+rx.push(134);ry.push(634);
+rx.push(543);ry.push(117);
 
 rx.push(493);ry.push(436); //oxygen
-rx.push(250);ry.push(200); //tor
+rx.push(255);ry.push(200); //tor
 
  
         var have =new Array();    //Created this
@@ -192,7 +191,7 @@ function remove(i){
  
 
 function keyInput(evt) {
- aud.play();
+
  in_portal();
  if(keyFunction)
  {
@@ -213,6 +212,7 @@ intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
 if(collided)
 {
    remove(i);
+   collect.play();
    collided=false;
 }
 }
@@ -469,7 +469,7 @@ case 37:{
                         flag=1;
                         x= 474+dx;}
                         }
-                      
+                       if (flag==1)collide.play();
 
                         if (flag == 0) {
                         x -= dx;
@@ -530,7 +530,7 @@ case 39:     { ////////nai hua h ye yrt
                         }
                      
                      
-            
+             if (flag==1)collide.play();
                 if (flag == 0 ) {
                 x += dx;
                 buster.drawAnimated(x, y, [7,8,9,10,11,12],ctx);
@@ -670,6 +670,7 @@ case 38:{                flag=0;
                         {  y=360+dy;
                         flag=1;     }
                         }
+                         if (flag==1)collide.play();
                         if (flag == 0 ){
                         y -= dy;
                         buster.drawAnimated(x, y, [67,68,69,71],ctx);
@@ -770,7 +771,7 @@ case 40:{                  flag=0;
                           flag=1;}
                         }
                      
-
+                       if (flag==1)collide.play();
                         if (flag==0){
                         y += dy;
                         buster.drawAnimated(x, y, [79,80,81,82,83],ctx);
@@ -887,7 +888,7 @@ case 37:{
                         flag=1;
                         x= 982+dx;}
                         }
-                     
+                      if (flag==1)collide.play();
                 if (flag == 0 ) {
                   x -= dx;
                   buster.drawAnimated(x, y, [13,14,15,16,17,18],ctx);
@@ -922,7 +923,7 @@ case 39:{
              
                 if(y>43 && y<130)
                 {
-                if (x+d4>1001 && x<=1001)
+                if (x+dx>1001 && x<=1001)
                 {x=1001-dx; flag=1; }                            //bed
                 }
              
@@ -981,7 +982,7 @@ case 39:{
                         flag = 1;
                         }
                         }
-                     
+                      if (flag==1)collide.play();
                 if (flag == 0) {
                 x+= dx;
                 buster.drawAnimated(x, y, [7,8,9,10,11,12],ctx);
@@ -1020,6 +1021,10 @@ alert("got back");
     window.location="lastpagefinal/demo.php";
 }
 function init() {
+
+  audio.load();
+  collide.load();
+  collect.load();
           function draw() {
             //ctx.clearRect(0,0,1200,700);
             document.getElementById("clock").innerHTML=c;
@@ -1081,7 +1086,25 @@ function init() {
           }
           draw();
           //document.getElementById("txt").value = 0;
-         
+        
+var played = false;
+var tillPlayed =130 ;
+function update()
+{
+    if(!played){
+        if(tillPlayed){
+        audio.currentTime = tillPlayed;
+        audio.play();
+        played = true;
+        }
+        else {
+                audio.play();
+                played = true;
+        }
+    }
+}
+setInterval(update,1000);
+
      
      }
      window.onload = init();

@@ -46,20 +46,18 @@ body{
  <body>
 
  <div id="wallcontainer">
- <audio id="boom"> <source src=" assets/audio/TimeBomb.wav" type="audio/ogg "></audio>
- <audio id="boom2"> <source src=" assets/audio/boom.wav" type="audio/ogg "></audio>
- <audio id="audio"> <source src="assets/audio/crash.wav" type='audio/wav; '></audio>
+
+ <audio id="audio"> <source src="assets/audio/60_seconds.ogg" type='audio/ogg; '></audio>
   
-  <audio id="collide"> <source src="assets/audio/huh.ogg" type='audio/ogg; '></audio>
+  <audio id="collide"> <source src="assets/audio/body.ogg" type='audio/ogg; '></audio>
   <audio id="collect"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
-  <audio id="bgsound"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
  <div id="canvas-container"><canvas id="canvas" width="1250" height=" 750"></canvas></div>
   <span id="clock"></span>
  </div>
 <script type="text/javascript">
 var keycollected=false;
 var r=null;
-var aud=document.getElementById("audio");   //Walk
+var audio=document.getElementById("audio");   //Walk
 var collide=document.getElementById("collide");  //Wall
 var collect=document.getElementById("collect");  //Resource
 var buster = new Sprite("assets/img/Buster0.png");
@@ -201,7 +199,6 @@ function remove(i){
  
 
 function keyInput(evt) {
- aud.play();
 
 in_portal();
  if(keyFunction)
@@ -235,7 +232,7 @@ else if(r==0 && keycollected)
 remove(i);
 collided=false;
 }
-
+ collect.play();
 }
 } //for loop end
 if (ini==0)                                            //Start Timer on first move by player
@@ -1191,7 +1188,7 @@ case 37: {flag=0;
 function timedCount() {
     //document.getElementById("txt").value = c;
    c = c + 1;
-    if(c<40)
+    if(c<60)
     t = setTimeout(function(){ timedCount() }, 3000);
   else stopCount();
 }
@@ -1212,6 +1209,9 @@ function stopCount() {
     window.location="lastpagefinal/demo.php";
 }
 function init() {
+  audio.load();
+  collect.load();
+  collide.load();
           function draw() {
             //ctx.clearRect(0,0,1200,700);
             document.getElementById("clock").innerHTML=c;
@@ -1279,7 +1279,25 @@ function init() {
           }
           draw();
           //document.getElementById("txt").value = 0;
-         
+       
+var played = false;
+var tillPlayed =130 ;
+function update()
+{
+    if(!played){
+        if(tillPlayed){
+        audio.currentTime = tillPlayed;
+        audio.play();
+        played = true;
+        }
+        else {
+                audio.play();
+                played = true;
+        }
+    }
+}
+setInterval(update,1000);
+
      
      }
      window.onload = init();

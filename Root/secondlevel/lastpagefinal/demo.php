@@ -1,6 +1,7 @@
 	 <?php
 include '../connect.php';
-$sql="SELECT * FROM level2 WHERE tk_emailid ='$_SESSION['tk_emailid']'";
+$user='manish';
+$sql="SELECT * FROM level4 WHERE tk_emailid ='$user'";
 $result=mysql_query($sql) or die(mysql_error());
 $row=mysql_fetch_array($result);
 
@@ -16,7 +17,21 @@ $dayoffood =$row['5'];
 $dayofwater =$row['6'];
 $dayoffuel =$row['7'];
 
- ?>
+$sql1="SELECT * FROM main WHERE tk_emailid ='$user'";
+$query1=mysql_query($sql1) or die(mysql_error());
+$row2=mysql_fetch_assoc($query1);
+$cl=$row2['tk_current_level'];
+
+if($cl==0)$megapoints=100;
+if($cl==1)$megapoints=100;
+if($cl==2)$megapoints=200;
+if($cl==3)$megapoints=350;
+if($cl==4)$megapoints=600;
+if($cl==5)$megapoints=1000;
+$cl=2;
+?>
+
+
 
 <html>
 
@@ -24,6 +39,15 @@ $dayoffuel =$row['7'];
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link type="text/css" href="main.css" rel="stylesheet"  />
 		<script type="text/javascript" src="../assets/js/pageflip.js">
+	</script>
+	<script type="text/javascript" src="../assets/js/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+	function update(){
+
+ $.post("../../setmegapoints.php",{username:"<?php echo $row2['tk_emailid']; ?>",level:"<?php echo $cl; ?>",megapoints:"<?php echo $megapoints; ?>"},function(){});
+
+	}
 	</script>
 	</head>
 
@@ -97,8 +121,8 @@ $dayoffuel =$row['7'];
               
 			</div>
 			<div class="links">
-			 <h1><a href="../../map 2 level 3/Rules/rules.html"  alt="next level">Next Level</a></h1> 
-			 <h1><a href="#level_2" alt="next level">Retry</a></h1>  
+			 <h1><a href="../../lp/lp.php"  alt="next level">Next Level</a></h1> 
+			 <h1><a href="../level2.html" alt="next level">Retry</a></h1>  
 			</div>
 				
 	

@@ -1,7 +1,7 @@
 <?php include 'connect.php';
 $days_lived=$_POST['no_of_days_lived']; 
 //session variable
-$user='tanvi';
+$user='dumy';
 $level_score=$_POST['no_of_days_lived'];
 $water=$_POST['water'];
 $food=$_POST['food'];

@@ -1,10 +1,10 @@
 <?php
  include 'connect.php';
- $mailid="has";
- $megapoints=200;
- $sql="INSERT INTO main (tk_emailid,megapoints) VALUES ('$mailid','$megapoints')";
- $result=mysql_query($result) or die(mysql_error());
 
-
+ $mailid=$_POST['username'];
+ $level=$_POST['level'];
+ $megapoints=$_POST['megapoints'];
+ $sql="UPDATE main SET megapoints = '$megapoints',tk_current_level='$level' WHERE tk_emailid='$mailid'";
+ $result=mysql_query($sql) or die(mysql_error());
 
  ?>

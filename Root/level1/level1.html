@@ -4,7 +4,7 @@
     <title>Sixty Seconds</title>
     <script src="assets/js/jquery.min.js"></script>
      <script src="assets/js/player1.js"> </script>
-  <script src="assets/js/calculation1.js"> </script>
+  <script src="assets/js/pageflip.js"> </script>
   </head>
 <style type="text/css">
 body{
@@ -33,22 +33,20 @@ body{
 
         }</style>
  <body><div id="wallcontainer">
- <audio id="boom"> <source src=" TimeBomb.wav" type="audio/ogg "></audio>
- <audio id="boom2"> <source src=" boom.wav" type="audio/ogg "></audio>
- <audio id="audio"> <source src="assets/audio/huh.wav" type='audio/wav; '></audio>
+
+ <audio id="audio"> <source src="assets/audio/60_seconds.ogg" type='audio/ogg; '></audio>
   
-  <audio id="collide"> <source src="assets/audio/clock.ogg" type='audio/ogg; '></audio>
+  <audio id="collide"> <source src="assets/audio/body.ogg" type='audio/ogg; '></audio>
   <audio id="collect"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
-  <audio id="bgsound"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
+ 
  <div id="canvas-container"><canvas id="canvas" width="1250" height=" 750"></canvas></div>
   <span id="clock"></span>
  </div>
 <script type="text/javascript">
-var aud=document.getElementById("audio");   //Walk
+var audio=document.getElementById("audio");   //background
 var collide=document.getElementById("collide");  //Wall
 var collect=document.getElementById("collect");  
-var audbomb =document.getElementById('boom');
-var audbomb2 =document.getElementById('boom2');
+
  var buster = new Sprite("assets/img/Buster0.png");
 var flag = 0;
 var ctx = document.getElementById('canvas').getContext('2d');
@@ -79,7 +77,7 @@ var rx =new Array();
 var ry =new Array();
 
 var oxy =new Image();    var wat=new Image();    var fue=new Image();    var foo=new Image();
-oxy.src ="assets/img/tor.png";    wat.src ="assets/img/water.png"; //Issue: Check extensions. Add all resources
+oxy.src ="assets/img/gas.png";    wat.src ="assets/img/water.png"; //Issue: Check extensions. Add all resources
 fue.src="assets/img/fuel.png";    foo.src="assets/img/food.png";
 for(var i=0;i<5;i++)
         {resources[i]= wat ;
@@ -112,7 +110,7 @@ var ry =new Array();
     rx.push(790);ry.push(198);
     
     rx.push(63);ry.push(395); //food
-    rx.push(545);ry.push(530);
+    rx.push(545);ry.push(490);
     rx.push(790);ry.push(555);
     rx.push(1120);ry.push(230);
     
@@ -159,6 +157,7 @@ return section;
             if(collided)
             {
             remove(i);
+            collect.play();
             collided=false;
             }
             }
@@ -187,10 +186,10 @@ return section;
 function keyInput(evt) {  
 
 if(keyFunction){
-  aud.play();
+
   switch(evt.keyCode){
 case 37: {flag=0;
-          if(y>0 && y< 420)//sect1 left wall
+         if(y>0 && y< 420)//sect1 left wall
           {
             if(x-dx < 17 && x>= 17)
               { x=24; flag=1; }
@@ -324,6 +323,7 @@ case 37: {flag=0;
               x=640+dx;flag=1;
               }
             }
+            if (flag==1)collide.play();
             if(flag==0)
             {
               x-=dx;buster.drawAnimated(x,y,[13,14,15,16,17,18],ctx);
@@ -337,112 +337,112 @@ case 38:{flag=0;
           {
             if(y-dy<15 && y>=15)
             {
-              y=15+dx;flag=1;
+              y=15+dy; flag=1;
             }
           }
           if(x>455 && x<585)
           {
             if(y-dy<225 && y>=225)
             {
-              y=225+dy;flag=1;
+              y=225+dy; flag=1;
             }
           }
           if(x>422 && x<464)
           {
             if(y-dy<266 && y>=266)
             {
-              y=266+dy;flag=1;
+              y=266+dy; flag=1;
             }
           }
           if(x>452 && x<733)
           {
            if(y-dy<16 && y>=16)
-            {y=16+dy;flag=1;}
+            {y=16+dy; flag=1; }
           }
-          
+         
           if(x>714 && x<756)
           {
             if(y-dy<202 && y>=202)
-              {y=202+dy;flag=1;}
+              {y=202+dy; flag=1; }
           }
           if(x>755 && x<812)
           {
             if(y-dy<176 && y>=176)
-              {y=175+dx;flag=1;}
+              {y=176+dy; flag=1; }
           }
           if(x>870 && x< 1084)
           {
             if(y-dy<207 && y>=207)
-              {y=207+dy;flag=1;}
+              {y=207+dy; flag=1;}
           }
           if(x>754 && x<1200)
           {
             if(y-dy<16 && y>=16)
-              {y=16+dy;flag=1;}
+              {y=16+dy; flag=1; }
           }
           if(x>714 && x<1200)
           {
             if(y-dy<312 && y>=312)
-              {y=312+dy;flag=1;}
+              {y=312+dy; flag=1; ;}
           }
-          if(x>785 && x<832)
+          if(x>790 && x<832)
           {
             if(y-dy<378 && y>=378)
-              {y=378+dy;flag=1;}
+              {y=378+dy; flag=1; }
           }
           if(x>858 && x<1084)
           {
             if(y-dy<572 && y>=572)
-              {y=572+dy;flag=1;}
+              {y=572+dy; flag=1; }
           }
           if(x>620 && x<740)
           {
-            if(y-dy<451 && y>=451)
+            if(y-dy<451 && y>=451) 
             {
-              y=450+dy;flag=1;
+              y=451+dy; flag=1;
             }
           }
           if(x>497 && x<642)
           {
-            if(y-dy<656 && y>656)
-          {y=656+dy;flag=1;}
+            if(y-dy<656 && y>=656)
+          {y=656+dy; flag=1; }
           }
           if(x>476 && x<670)
           {
             if(y-dy<623 && y>=623)
-              {y=623+dy;flag=1;}
+              {y=623+dy; flag=1; }
           }
           if(x>432 && x<700)
           {
             if(y-dy <608 && y>=608)
-              { y=608+dy;flag=1;}
+              { y=608+dy; flag=1; }
           }
            if(x>365 && x<417)
            {
             if(y-dy<574 && y>=574)
-              {y=574+dy;flag=1;}
+              {y=574+dy; flag=1; }
            }
-           if(x>0 && x>382)
+           if(x>0 && x<382)
            {
-            if(y-dy <444 && y>=444)
-           {y=444+dy;flag=1;}
+            if(y-dy <444 && y>=444)    
+           {y=444+dy; flag=1;  }
            }
            if(x>15 && x<92)
            {
             if(y-dy<554 && y>=554)
-              {y=554+dy;flag=1;}
+              {y=554+dy; flag=1; }
            }
            if(x>30 && x<237)
            {
             if(y-dy<225 && y>=225)
-              {y=225+dy;flag=1;}
+              {y=225+dy; flag=1; }
            }
            if(x>230 && x<368)
            {
             if(y-dy<235 && y>=235)
-              {y=235+dy;flag=1;}
+              {y=235+dy; flag=1; }
            }
-      
+      if (flag==1)collide.play();
       if(flag==0)
       {
         y-=dy;
@@ -496,7 +496,7 @@ case 39:
          }
          if(y>305 && y<685)
          {
-          if(x+dx>1160 && x<=1160)
+          if(x+dx>1160 && x-6<=1160)
           {
             x=1160;flag=1;
           }
@@ -560,6 +560,7 @@ case 39:
             x=320-dx;flag=1;
           }
          }
+          if (flag==1)collide.play();
          if(flag==0)
          {
           x+=dx;buster.drawAnimated(x,y,[7,8,9,10,11,12],ctx);
@@ -673,12 +674,12 @@ case 40:{flag=0;
             if(y+dy>500 && y<=500 )
               {y=500-dy;flag=1;}
           }
+           if (flag==1)collide.play();
           if(flag==0){
             y+=dy;buster.drawAnimated(x,y,[79,80,81,82,83],ctx);
           }
          
 }//case down
-
  }//switch end
  
 
@@ -743,7 +744,7 @@ function timedCount() {
     //document.getElementById("txt").value = c;
     c = c + 1;
     if(c<60)
-    t = setTimeout(function(){ timedCount() }, 3000);
+    t = setTimeout(function(){ timedCount() }, 2000);
   else stopCount();
 }
 
@@ -761,17 +762,14 @@ function stopCount() {
     timer_is_on = 0;
     keyFunction=false;
     calculate(vault);
-
-
-  window.location ="lastpagefinal/demo.php";
+ window.location ="lastpagefinal/demo.php";
 
 }
 
 
 function init() {
-          audbomb.load();
-        audbomb2.load();
-        aud.load();
+         
+        audio.load();
         collide.load();
         collect.load();
           function player(x, y ) {
@@ -791,7 +789,7 @@ function init() {
 
             if (have[0]==wat)
             { 
-            ctx.drawImage(wat,100,100,80,80);
+            ctx.drawImage(wat,600,50,80,80);
        
             vault.push(have[0]);
            
@@ -801,28 +799,28 @@ function init() {
             
               if (have[0]==oxy)
             { 
-            ctx.drawImage(oxy,100,100,80,80);
+            ctx.drawImage(oxy,600,50,80,80);
             vault.push(have[0]);
             have.splice(oxy,1);
             
              }
              
              if (have[0]==foo)
-             {ctx.drawImage(foo,100,100,80,80);
+             {ctx.drawImage(foo,600,50,80,80);
                 vault.push(have[0]);
              have.splice(foo,1); 
       
               }
              
              if (have[0]==fue)
-             {ctx.drawImage(fue,100,100,80,80);
+             {ctx.drawImage(fue,600,50,80,80);
                 vault.push(have[0]);
              have.splice(fue,1);
             
                }
              
              if (have[0]==oxy)
-             {ctx.drawImage(fue,100,100,80,80);  //CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+             {ctx.drawImage(fue,600,50,80,80);  //CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
              vault.push(have[0]);
              have.splice(oxy,1);  
                }
@@ -843,6 +841,24 @@ function init() {
 
           draw();
           //document.getElementById("txt").value = 0;
+         
+var played = false;
+var tillPlayed =130 ;
+function update()
+{
+    if(!played){
+        if(tillPlayed){
+        audio.currentTime = tillPlayed;
+        audio.play();
+        played = true;
+        }
+        else {
+                audio.play();
+                played = true;
+        }
+    }
+}
+setInterval(update,1000);
 
          player (200,200);
 

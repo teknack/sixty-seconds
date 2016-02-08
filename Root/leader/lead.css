@@ -1,0 +1,163 @@
+body {
+padding-top:3%; 
+padding-left:10%;
+padding-right:10%;
+overflow:hidden; 
+text-decoration:none; 
+}
+
+#back {
+overflow:hidden;
+width:80%;
+position:absolute;
+padding:5px;
+background: url('leadback.png');
+background-size: 100% 100%; 
+
+}
+ 
+
+  ul {
+	 
+    list-style-type: none;
+     
+}  
+
+#nav {
+position:relative; 
+ }
+ 
+#main{
+padding:5px;
+display:block; width:60px; height:60px; border-radius:50%;
+font-size:15px; color:black; line-height:60px;text-align:center;
+text-decoration:none; background:#fff
+}
+
+#main:hover  {color:white; text-decoration:none; background:#00b33c}
+ 
+ 
+#one{ 
+padding:5px;
+display:block; width:60px; height:60px; border-radius:50%;
+font-size:15px; color:#000; line-height:60px;text-align:center;
+text-decoration:none; background:#fff
+} 
+#one:hover  {color:white; text-decoration:none; background:#00b33c} 
+
+#two{ 
+padding:5px;
+display:block; width:60px; height:60px; border-radius:50%;
+font-size:15px; color:#000; line-height:60px;text-align:center;
+text-decoration:none; background:#fff
+} 
+#two:hover  {color:white; text-decoration:none; background:#00b33c} 
+
+#three{ 
+padding:5px;
+display:block; width:60px; height:60px; border-radius:50%;
+font-size:15px; color:#000; line-height:60px;text-align:center;
+text-decoration:none; background:#fff
+} 
+#three:hover  {color:white; text-decoration:none; background:#00b33c} 
+
+#four{ 
+padding:5px;
+display:block; width:60px; height:60px; border-radius:50%;
+font-size:15px; color:#000; line-height:60px;text-align:center;
+text-decoration:none; background:#fff
+} 
+#four:hover  {color:white; text-decoration:none; background:#00b33c} 
+
+#five{ 
+padding:5px;
+display:block; width:60px; height:60px; border-radius:50%;
+font-size:15px; color:#000; line-height:60px;text-align:center;
+text-decoration:none; background:#fff
+} 
+#five:hover  {color:white; text-decoration:none; background:#00b33c} 
+
+#navul {
+padding:8px;
+} 
+ 
+ 
+ 
+ #d_main{
+ position:fixed;
+ right:13%;
+ top:23%;
+ z-index:10;
+ opacity:0.5;
+ width:65%;
+ height:65%;
+ background: white;
+
+ visibility: visible;
+ }
+
+ 
+ #d_one{
+ position:fixed;
+ right:13%;
+ top:23%;
+ z-index:10;
+ opacity:0.5;
+ width:65%;
+ height:65%;
+ background: white;
+ visibility: hidden;
+ }
+
+ 
+ #d_two{
+ position:fixed;
+ right:13%;
+ top:23%;
+ z-index:10;
+ opacity:0.5;
+ width:65%;
+ height:65%;
+ background: white;
+ visibility: hidden;
+ }
+
+ 
+ #d_three{
+ position:fixed;
+ right:13%;
+ top:23%;
+ z-index:10;
+ opacity:0.5;
+ width:65%;
+ height:65%;
+ background: white;
+ visibility: hidden;
+ }
+
+ 
+ #d_four{
+ position:fixed;
+ right:13%;
+ top:23%;
+ z-index:10;
+ opacity:0.5;
+ width:65%;
+ height:65%;
+ background: white;
+ visibility: hidden;
+ }
+
+
+ 
+ #d_five{
+ position:fixed;
+ right:13%;
+ top:23%;
+ z-index:10;
+ opacity:0.5;
+ width:65%;
+ height:65%;
+ background: white;
+ visibility: hidden;
+ }

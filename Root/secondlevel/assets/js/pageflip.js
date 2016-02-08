@@ -1,17 +1,16 @@
 
   function ajax_post(days_lived,waters,foods,fuels,dayofFuel,dayofFood,dayofWater){
-
  $.post("dump.php",{no_of_days_lived:days_lived,water:waters,food:foods,fuel:fuels,day_of_no_food:dayofFood,day_of_no_water:dayofWater,day_of_no_fuel:dayofFuel},function(){});
-
+return 0;
 }
 
 
 var point={
 	
- total_fuel:0,
-total_food:0,
-total_water:0,
- health:0,
+ total_fuel:null,
+total_food:null,
+total_water:null,
+ health:100,
  dayofFood:0,
  dayofFuel:0,
  dayofWater:0,
@@ -21,40 +20,37 @@ total_water:0,
 days_lived:0,
  
 };
-var waters=0,foods=0,fuels=0;
+var first_aid=false;
 var spcl=0;
-var foodini=0;
-var fuelini=0;
-var waterini=0;
-var o=0;
+var foodini=null;
+var fuelini=null;
+var waterini=null;
+var o=null;
 var torch=0;
 function calculate(resources){
 	for(var i=0;i<resources.length;i++)
-if(resources[i]==wat)
+if(resources[i]==oxy)
  o=i;
 	if(o!=null){ 
 		for(var i=0;i<resources.length;i++){
 
-				if(resources[i].id == "wat")
-				point.total_water++;
-			    if(resources[i].id == "fue")
-				point.total_fuel++;
-			    if(resources[i].id == "foo")
-				point.total_food++;
-                if(resources[i].id == "tor")
+				if(resources[i]== wat)
+				{point.total_water++;}
+			    if(resources[i] == fue)
+				{point.total_fuel++;}
+			    if(resources[i] == foo)
+				{point.total_food++;}
+                if(resources[i] == oxy)
 				torch=1;
-			    if(resources[i].id == "first_aid")
-				first_aid=1;
-                
-                
+          
 				}
-				alert(point.total_water +"waters");
+				
 				point.waters=point.total_water;
 				point.fuels=point.total_fuel;
 				point.foods=point.total_food;
 
                  if(point.total_water == 5 ) spcl++;
-                  if(point.total_fuel == 5 ) spcl++;
+                  if(point.total_fuel == 4 ) spcl++;
                   if(point.total_food == 4 ) spcl++;
                   if(torch) spcl++;
 
@@ -85,12 +81,11 @@ if(resources[i]==wat)
 						   } 
 						else if(point.total_water <=0 && point.total_food > 0 && point.total_fuel > 0)    
 						   {
-						   point.total_food-=25;
-
-						   point.health-=10;
+						   point.total_food-=0.1;
+						   point.total_fuel-=0.20;						   point.health-=10;
 						   } 
 						else if(point.total_water <= 0 && point.total_food > 0 && point.total_fuel <=0)    
-						   { point.total_food-=25;
+						   { point.total_food-=0.1;
 						   point.health-=10;
 						   } 
 						else if(point.total_water <=0 && point.total_food <= 0 && point.total_fuel > 0)    
@@ -101,17 +96,17 @@ if(resources[i]==wat)
 						   {
 						   	point.health -=30;
 						   } 
-                        if(foodini == 0)
-                         if(point.total_food==0) {foodini= 1; point.dayofFood= i;  }
-						if(fuelini == 0)
-                         if(point.total_fuel==0) {fuelini= 1; point.dayofFuel= i;  }
-						if(waterini == 0)
-                         if(point.total_water==0) {foodini= 1; point.dayofWater= i;  }
+                        if(foodini== null)
+                         if(point.total_food<=0) {foodini= 1; point.dayofFood= i;  }
 						
+						if(waterini == null)
+                         if(point.total_water<=0) {waterini= 1; point.dayofWater= i;  }
+						if(fuelini == null)
+                         if(point.total_fuel<=0) {fuelini= 1; point.dayofFuel= i;  }
 
 						if(point.health == 0 && first_aid)
 							point.health+=20;
-
+}// for ends
 						
                        switch(spcl)
                     {
@@ -121,8 +116,8 @@ if(resources[i]==wat)
                        case 3:point.days_lived+=8;
                        case 4:point.days_lived+=10;
                     }
-
-			}// for ends
+                  
+			
   
 var a=new Array();
   a[0]=point.days_lived;
@@ -133,13 +128,12 @@ var a=new Array();
   a[5]=point.dayofFuel;
   a[6]=point.dayofWater;
   ajax_post(a[0],a[1],a[2],a[3],a[4],a[5],a[6]);
-
+ alert("we need apop up here");
 }//if oxygen
 
 
 
 }//calculate ends
-
 function init(){ //this is for demo.html
 	(function() {
 	

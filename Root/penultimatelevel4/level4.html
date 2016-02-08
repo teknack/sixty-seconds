@@ -41,18 +41,17 @@ body{
  <body>
 
  <div id="wallcontainer">
- <audio id="boom"> <source src=" assets/audio/TimeBomb.wav" type="audio/ogg "></audio>
- <audio id="boom2"> <source src=" assets/audio/boom.wav" type="audio/ogg "></audio>
- <audio id="audio"> <source src="assets/audio/huh.wav" type='audio/wav; '></audio>
+ 
+ <audio id="audio"> <source src="assets/audio/60_seconds.ogg" type='audio/ogg; '></audio>
   
-  <audio id="collide"> <source src="assets/audio/clock.ogg" type='audio/ogg; '></audio>
+  <audio id="collide"> <source src="assets/audio/body.ogg" type='audio/ogg; '></audio>
   <audio id="collect"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
-  <audio id="bgsound"> <source src="assets/audio/crash.ogg" type='audio/ogg; '></audio>
+ 
  <div id="canvas-container"><canvas id="canvas" width="1250" height=" 750"></canvas></div>
   <span id="clock"></span>
  </div>
 <script type="text/javascript">
-var aud=document.getElementById("audio");   //Walk
+var audio=document.getElementById("audio");   //background
 var collide=document.getElementById("collide");  //Wall
 var collect=document.getElementById("collect");  //Resource
 var buster = new Sprite("assets/img/Buster0.png");
@@ -122,20 +121,20 @@ resources[13]=key; resources[i].id='key';
 resources[14]=tor; resources[i].id='tor'; 
 
  
-rx.push(543);ry.push(132); //water
-rx.push(1004);ry.push(333);
+rx.push(543);ry.push(106); //water
+rx.push(1000);ry.push(313);
 rx.push(676);ry.push(440);
-rx.push(510);ry.push(281);
+rx.push(510);ry.push(275);
 
-rx.push(729);ry.push(375); //food
-rx.push(611);ry.push(621);
+rx.push(729);ry.push(355); //food
+rx.push(601);ry.push(600);
 rx.push(1142);ry.push(360);
-rx.push(748);ry.push(31);
+rx.push(728);ry.push(31);
 
-rx.push(283);ry.push(133); //feul
-rx.push(999);ry.push(53);
+rx.push(283);ry.push(113); //feul
+rx.push(989);ry.push(53);
 rx.push(494);ry.push(448);
-rx.push(345);ry.push(667);
+rx.push(345);ry.push(657);
 
 rx.push(800);ry.push(93); //oxygen
 
@@ -201,7 +200,6 @@ function remove(i){
 
 function keyInput(evt) {
 
- aud.play();
   in_portal();
  if(keyFunction)
  {
@@ -234,7 +232,7 @@ else if(r==0 && keycollected)
 remove(i);
 collided=false;
 }
-
+  collect.play();
 }
  }//for loop ends
 if (ini==0)                                            //Start Timer on first move by player
@@ -420,7 +418,8 @@ case 40:{               flag=0;
                           {y= 625-dy;
                           flag=1;}
                         }
-                      
+                           if (flag==1)
+                        collide.play();
                         if (flag==0 ){
                         y += dy;
                         buster.drawAnimated(x, y, [79,80,81,82,83],ctx);
@@ -490,7 +489,8 @@ case 37:{
                         x= 474+dx;}
                         }
                       
-
+                             if (flag==1)
+                        collide.play();
                         if (flag == 0) {
                         x -= dx;
                         buster.drawAnimated(x, y, [13,14,15,16,17,18],ctx);
@@ -549,7 +549,8 @@ case 39:     { ////////nai hua h ye yrt
                         }
                         }
                      
-                     
+                          if (flag==1)
+                        collide.play();
             
                 if (flag == 0 ) {
                 x += dx;
@@ -690,6 +691,8 @@ case 38:{                flag=0;
                         {  y=360+dy;
                         flag=1;     }
                         }
+                             if (flag==1)
+                        collide.play();
                         if (flag == 0 ){
                         y -= dy;
                         buster.drawAnimated(x, y, [67,68,69,71],ctx);
@@ -790,7 +793,8 @@ case 40:{                  flag=0;
                           flag=1;}
                         }
                      
-
+                             if (flag==1)
+                        collide.play();
                         if (flag==0){
                         y += dy;
                         buster.drawAnimated(x, y, [79,80,81,82,83],ctx);
@@ -907,7 +911,8 @@ case 37:{
                         flag=1;
                         x= 982+dx;}
                         }
-                     
+                          if (flag==1)
+                        collide.play();
                 if (flag == 0 ) {
                   x -= dx;
                   buster.drawAnimated(x, y, [13,14,15,16,17,18],ctx);
@@ -942,7 +947,7 @@ case 39:{
              
                 if(y>43 && y<130)
                 {
-                if (x+d4>1001 && x<=1001)
+                if (x+dx>1001 && x<=1001)
                 {x=1001-dx; flag=1; }                            //bed
                 }
              
@@ -1001,7 +1006,8 @@ case 39:{
                         flag = 1;
                         }
                         }
-                     
+                          if (flag==1)
+                        collide.play();
                 if (flag == 0) {
                 x+= dx;
                 buster.drawAnimated(x, y, [7,8,9,10,11,12],ctx);
@@ -1020,8 +1026,8 @@ case 39:{
 function timedCount() {
     //document.getElementById("txt").value = c;
    c = c + 1;
-    if(c<60)
-    t = setTimeout(function(){ timedCount() }, 3000);
+    if(c<30)
+    t = setTimeout(function(){ timedCount() }, 2000);
   else stopCount();
 }
 function startCount() {
@@ -1041,13 +1047,17 @@ function stopCount() {
     window.location="lastpagefinal/demo.php";
 }
 function init() {
+   audio.load();
+   collect.load();
+   collide.load();
+
           function draw() {
             //ctx.clearRect(0,0,1200,700);
             document.getElementById("clock").innerHTML=c;
           ctx.drawImage(port1,864,375,50,50);
             ctx.drawImage(port2,260,245,70,70);
 			
-            if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
+            if (inVault() && have.length==1)   //Player present in the vault and he has a resource
             {
             
             if (have[0]==wat)
@@ -1101,6 +1111,25 @@ function init() {
            requestAnimationFrame(draw);
           }
           draw();
+          
+var played = false;
+var tillPlayed =130 ;
+function update()
+{
+    if(!played){
+        if(tillPlayed){
+        audio.currentTime = tillPlayed;
+        audio.play();
+        played = true;
+        }
+        else {
+                audio.play();
+                played = true;
+        }
+    }
+}
+setInterval(update,1000);
+
           //document.getElementById("txt").value = 0;
          
      
