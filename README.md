@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # sixtyseconds
 Teknack Event - Sixty Seconds
 
@@ -36,3 +37,9 @@ Hasmit Uchil<br>
 <b> Special Thanks  </b>
 ******************************************************************
 Akash Gund, mentor.
+=======
+# DubaiBlocks
+
+Struggle with Unity 3d Part One.
+mvement struggle overridden.
+>>>>>>> 68dfdd85275138ad6861abe184b9eb614dcd51c8
